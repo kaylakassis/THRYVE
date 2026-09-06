@@ -6,6 +6,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Icons } from '../Icons.jsx';
 import { useAuth } from '../../lib/auth.jsx';
+import { isNative } from '../../lib/platform.js';
 
 const PRIMARY = [
   { id: 'dashboard', to: '/dashboard', icon: 'Home',     label: 'Home' },
@@ -20,15 +21,27 @@ const PRIMARY = [
 
 const ADMIN_ITEM = { id: 'admin', to: '/admin', icon: 'Settings', label: 'Admin' };
 
+// Native app: iOS-style tab bar. Messages moves under More (and stays one
+// tap away in the header), so the fifth slot can hold More, which replaces
+// the hamburger drawer. Admin lives inside More for super-admins.
+const NATIVE = [
+  { id: 'dashboard', to: '/dashboard', icon: 'Home',     label: 'Home' },
+  { id: 'calendar',  to: '/calendar',  icon: 'Calendar', label: 'Calendar' },
+  { id: 'finance',   to: '/finance',   icon: 'Dollar',   label: 'Money' },
+  { id: 'ivy',       to: '/ivy',       icon: 'Spark',    label: 'Ivy' },
+  { id: 'more',      to: '/more',      icon: 'More',     label: 'More' },
+];
+
 export default function MobileBottomNav() {
   const { user } = useAuth();
   // Honor the owner's hidden tabs so the bottom bar stays consistent with the
   // rest of the nav. Home + Ivy are never hideable, so the bar keeps anchors.
   const hidden = new Set(user?.ui_prefs?.hiddenNav || []);
-  const primary = PRIMARY.filter((i) => !hidden.has(i.id));
-  const items = user?.isSuperAdmin ? [...primary, ADMIN_ITEM] : primary;
+  const native = isNative();
+  const primary = (native ? NATIVE : PRIMARY).filter((i) => i.id === 'more' || !hidden.has(i.id));
+  const items = user?.isSuperAdmin && !native ? [...primary, ADMIN_ITEM] : primary;
   return (
-    <nav className="mobile-nav" aria-label="Primary">
+    <nav className={native ? 'mobile-nav native' : 'mobile-nav'} aria-label="Primary">
       {items.map((item) => {
         const Icon = Icons[item.icon] || Icons.Home;
         return (
@@ -39,7 +52,7 @@ export default function MobileBottomNav() {
           >
             {({ isActive }) => (
               <>
-                <Icon size={20} sw={isActive ? 1.9 : 1.6}/>
+                <Icon size={native ? 24 : 20} sw={isActive ? 1.9 : 1.6}/>
                 <span>{item.label}</span>
               </>
             )}

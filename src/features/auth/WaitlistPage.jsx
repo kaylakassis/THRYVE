@@ -79,10 +79,10 @@ export default function WaitlistPage() {
         <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: 'inherit' }}>
           <div style={{
             width: 34, height: 34, borderRadius: 'var(--radius-sm, 9px)',
-            background: 'var(--accent)', color: 'var(--accent-ink)',
+            background: '#042b25', overflow: 'hidden',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            <Icons.Logo size={21} color="currentColor"/>
+            <img src="/icon-512.png" alt="" draggable="false" style={{ width: '100%', height: '100%', display: 'block' }}/>
           </div>
           <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 20, letterSpacing: '-0.015em' }}>
             Ivy

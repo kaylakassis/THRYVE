@@ -86,4 +86,6 @@ export const TITLES = {
   // but it has its own tutorial and Topbar title block, so it needs an
   // entry here for AppShell to look up.
   account:   { title: 'Account',       subtitle: 'Settings & billing' },
+  // /more is the native app's fifth tab (everything not on the tab bar).
+  more:      { title: 'More',          subtitle: 'Everything else' },
 };

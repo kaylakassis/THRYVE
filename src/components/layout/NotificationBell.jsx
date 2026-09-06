@@ -26,7 +26,7 @@ function fmtRel(iso) {
   return new Date(iso).toLocaleDateString([], { month: 'short', day: 'numeric' });
 }
 
-export default function NotificationBell({ isMobile }) {
+export default function NotificationBell({ isMobile, plain = false }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([]);
@@ -123,7 +123,7 @@ export default function NotificationBell({ isMobile }) {
         aria-label={unread > 0 ? `Notifications (${unread} unread)` : 'Notifications'}
         title="Notifications"
         onClick={() => setOpen((x) => !x)}
-        className="btn btn-outline"
+        className={plain ? 'topbar-icon-btn' : 'btn btn-outline'}
         style={{
           position: 'relative',
           padding: isMobile ? 8 : undefined,

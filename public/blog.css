@@ -1,17 +1,33 @@
+/* Neue Haas Grotesk - Ivy's typeface. Regular (400) for text, Medium (500)
+   and Bold (700) for headings and titles.
+
+   The font is licensed, so the files are NOT in the repository. Put the
+   .woff2 files into public/fonts/ under exactly these names and every page
+   (website, app, iPhone app) picks them up - see docs/FONTS.md. Until the
+   files exist, the stack falls through to Helvetica Neue on iPhone and Mac
+   (Neue Haas Grotesk's direct descendant), then Inter, then Arial. */
+@font-face { font-family: 'Neue Haas Grotesk Text'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/NeueHaasGroteskText-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'Neue Haas Grotesk Text'; font-weight: 400; font-style: italic; font-display: swap; src: url('/fonts/NeueHaasGroteskText-Italic.woff2') format('woff2'); }
+@font-face { font-family: 'Neue Haas Grotesk Text'; font-weight: 500; font-style: normal; font-display: swap; src: url('/fonts/NeueHaasGroteskText-Medium.woff2') format('woff2'); }
+@font-face { font-family: 'Neue Haas Grotesk Text'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/NeueHaasGroteskText-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'Neue Haas Grotesk Display'; font-weight: 500; font-style: normal; font-display: swap; src: url('/fonts/NeueHaasGroteskDisplay-Medium.woff2') format('woff2'); }
+@font-face { font-family: 'Neue Haas Grotesk Display'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/NeueHaasGroteskDisplay-Bold.woff2') format('woff2'); }
+
 :root{
   --bg:#012B24; --panel:#04352D; --panel2:#0B4136;
   --border:#164B3F; --border2:#276353;
   --text:#ECF0F1; --muted:#C5D1CE; --dim:#93A3A0;
   --lime:#5CC98E; --ink:#012B24; --tint:#0A3D2F;
-  --head:'Space Grotesk',Inter,sans-serif;
+  --head:'Neue Haas Grotesk Display','Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;
+  --sans:'Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:Inter,-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 .container{max-width:1120px;margin:0 auto;padding:0 24px}
 .lime{color:var(--lime)}
-.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 26px;border-radius:8px;transition:.2s;cursor:pointer;border:none;font-family:Inter,sans-serif}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 26px;border-radius:8px;transition:.2s;cursor:pointer;border:none;font-family:var(--sans)}
 .btn-primary{background:var(--lime);color:var(--ink)}
 .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(92,201,142,.3)}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(16px);background:rgba(1,43,36,.92);border-bottom:1px solid var(--border)}
@@ -25,7 +41,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(16px);b
 .nav-cta .login{font-size:14.5px;color:var(--muted);font-weight:500;text-decoration:underline;text-underline-offset:3px}
 .btn-sm{padding:8px 18px;font-size:14px}
 h1,h2,h3{font-family:var(--head);font-weight:500}
-.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);background:var(--tint);border:1px solid rgba(92,201,142,.25);padding:6px 14px;border-radius:999px;margin-bottom:20px;font-family:Inter,sans-serif}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);background:var(--tint);border:1px solid rgba(92,201,142,.25);padding:6px 14px;border-radius:999px;margin-bottom:20px;font-family:var(--sans)}
 .menu-btn{display:none;background:none;border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:6px 12px;font-size:18px;cursor:pointer;line-height:1.2}
 .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(1,43,36,.98);border-bottom:1px solid var(--border);z-index:99;padding:8px 24px 18px}
 .mobile-menu a{display:block;padding:13px 0;font-size:16px;color:var(--muted);border-bottom:1px solid var(--border)}
@@ -53,13 +69,13 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;background:var(--p
 .search-bar{display:flex;gap:10px;max-width:640px;margin:30px auto 0;align-items:center}
 .search-wrap{flex:1;position:relative}
 .search-wrap .sicon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:15px;pointer-events:none}
-#search{width:100%;background:var(--panel);border:1px solid var(--border2);border-radius:10px;padding:13px 40px 13px 42px;font-size:15px;color:var(--text);font-family:Inter,sans-serif;outline:none;transition:.2s}
+#search{width:100%;background:var(--panel);border:1px solid var(--border2);border-radius:10px;padding:13px 40px 13px 42px;font-size:15px;color:var(--text);font-family:var(--sans);outline:none;transition:.2s}
 #search:focus{border-color:var(--lime)}
 #search::placeholder{color:var(--dim)}
 .sclear{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--dim);font-size:16px;cursor:pointer;display:none;padding:4px}
 .sclear.show{display:block}
 .sclear:hover{color:var(--text)}
-#sort{background:var(--panel);border:1px solid var(--border2);border-radius:10px;padding:13px 14px;font-size:14px;color:var(--muted);font-family:Inter,sans-serif;cursor:pointer;outline:none}
+#sort{background:var(--panel);border:1px solid var(--border2);border-radius:10px;padding:13px 14px;font-size:14px;color:var(--muted);font-family:var(--sans);cursor:pointer;outline:none}
 #sort:focus{border-color:var(--lime)}
 .result-count{text-align:center;font-size:13px;color:var(--dim);margin-top:16px}
 .no-results{text-align:center;padding:70px 20px;display:none}
@@ -69,7 +85,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;background:var(--p
 mark{background:rgba(92,201,142,.25);color:var(--text);border-radius:3px;padding:0 2px}
 @media(max-width:600px){.search-bar{flex-direction:column}#sort{width:100%}}
 .cats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:30px 0 10px}
-.cat{background:var(--panel);border:1px solid var(--border2);color:var(--muted);font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;cursor:pointer;transition:.2s;font-family:Inter,sans-serif}
+.cat{background:var(--panel);border:1px solid var(--border2);color:var(--muted);font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;cursor:pointer;transition:.2s;font-family:var(--sans)}
 .cat:hover{border-color:var(--lime);color:var(--text)}
 .cat.on{background:var(--lime);border-color:var(--lime);color:var(--ink)}
 .bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:40px 0 20px}

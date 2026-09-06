@@ -168,10 +168,10 @@ function Brand({ center }) {
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: center ? 'center' : 'flex-start' }}>
       <div style={{
         width: 34, height: 34, borderRadius: 8,
-        background: 'var(--accent)', color: 'var(--accent-ink)',
+        background: '#042b25', overflow: 'hidden',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}>
-        <Icons.Logo size={22} color="currentColor" />
+        <img src="/icon-512.png" alt="" draggable="false" style={{ width: '100%', height: '100%', display: 'block' }}/>
       </div>
       <div style={{ textAlign: 'left' }}>
         <div style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 500, letterSpacing: '-0.01em' }}>Ivy</div>

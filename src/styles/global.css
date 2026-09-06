@@ -1,7 +1,7 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
-  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  font-family: var(--font-sans);
   color: var(--fg);
   background: var(--page);
   -webkit-font-smoothing: antialiased;
@@ -9,6 +9,9 @@ body {
 }
 
 button { font: inherit; border: 0; background: none; cursor: pointer; color: inherit; }
+
+/* Headings and titles: the Medium cut. Explicit weights on a heading still win. */
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 500; }
 input, textarea, select { font: inherit; color: inherit; }
 
 /* .input - canonical form-control styling used across modals, drawers,
@@ -576,12 +579,12 @@ body.app-walled .view-toggle { display: none; }
 .rt-content em     { font-style: italic; }
 
 .doc-preview-body h1, .doc-preview-body h2 {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: var(--font-display);
   font-size: 22px; font-weight: 500; letter-spacing: -0.02em;
   margin: 22px 0 10px; color: #0F0F0F;
 }
 .doc-preview-body h3 {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: var(--font-display);
   font-size: 17px; font-weight: 500; letter-spacing: -0.015em;
   margin: 18px 0 6px; color: #0F0F0F;
 }
@@ -770,3 +773,78 @@ body.app-walled .view-toggle { display: none; }
   }
   a { color: inherit !important; text-decoration: none !important; }
 }
+
+/* ======================================================================
+   NATIVE APP (Capacitor). main.jsx adds html.native inside the phone app;
+   nothing here applies on the web. Goal: the screens read as an iOS app -
+   one title per screen, an unboxed navigation bar, a real tab bar, a
+   grouped "More" list instead of a drawer, and touch feedback instead of
+   hover states.
+   ====================================================================== */
+html.native body { overscroll-behavior-y: none; -webkit-touch-callout: none; }
+html.native .app-topbar, html.native .mobile-nav, html.native .btn, html.native .more-row,
+html.native .metric-label, html.native label { -webkit-user-select: none; user-select: none; }
+html.native ::-webkit-scrollbar { display: none; }
+html.native * { scrollbar-width: none; }
+html.native a, html.native button { cursor: default; }
+
+/* Header: iOS navigation-bar feel. */
+html.native .app-topbar { min-height: 56px; border-bottom-color: transparent; }
+html.native .app-topbar .page-title { font-weight: 600; }
+.topbar-icon-btn {
+  min-width: 44px; min-height: 44px; padding: 8px; border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--fg); background: none; border: 0; position: relative;
+}
+.topbar-icon-btn:active { background: var(--surface-2); }
+
+/* The page heading that repeats the header title (and its one-line blurb)
+   is marked by AppShell; one title per screen. */
+html.native [data-dup-title], html.native [data-dup-sub] { display: none !important; }
+html.native .page-pad { padding-top: 4px; }
+
+/* Tab bar: 49pt content + home-indicator inset, translucent, hairline top,
+   accent-colored active tab, no pill behind it. */
+html.native .mobile-nav.native {
+  padding: 6px 0 calc(2px + env(safe-area-inset-bottom, 0px));
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
+  border-top: 0.5px solid var(--border-strong); box-shadow: none;
+}
+html.native .mobile-nav.native .mobile-nav-item {
+  gap: 3px; padding: 4px 2px 6px; border-radius: 0; font-size: 10px; font-weight: 500;
+  color: var(--muted); background: none; transition: color .12s;
+}
+html.native .mobile-nav.native .mobile-nav-item.active { color: var(--accent); background: none; }
+html.native .mobile-nav.native .mobile-nav-item:active { transform: none; opacity: .7; }
+html.native body.has-mobile-nav .app-root > div { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+
+/* Touch feedback replaces hover. */
+html.native .btn:active { opacity: .72; transform: scale(.985); }
+html.native .btn { min-height: 44px; }
+html.native .btn-sm, html.native .btn.btn-sm { min-height: 36px; }
+html.native .card { border-radius: 16px; }
+
+/* Sign in / sign up: full-bleed, no card, tall fields. */
+html.native .auth-card { background: transparent !important; border: 0 !important; box-shadow: none !important; padding: 8px 0 0 !important; max-width: 440px; gap: 20px !important; }
+html.native .auth-card input { padding: 15px 14px !important; border-radius: 12px !important; }
+html.native .auth-card .btn-primary { padding: 15px 14px !important; border-radius: 12px; font-size: 16px; }
+html.native .auth-card h1.page-title { font-size: 32px !important; }
+html.native .auth-tagline { display: none; }
+
+/* ---------- "More" tab (src/features/more/MorePage.jsx) ---------- */
+.more-page { display: flex; flex-direction: column; gap: 22px; padding: 4px 16px 32px; }
+.more-label { font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px 6px; }
+.more-group { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: block; text-decoration: none; color: inherit; }
+.more-profile { display: flex; align-items: center; gap: 14px; padding: 14px 16px; }
+.more-profile:active, .more-row:active { background: var(--surface-2); }
+.more-avatar { width: 46px; height: 46px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.more-name { font-size: 17px; font-weight: 600; color: var(--fg); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.more-sub { font-size: 13px; color: var(--muted); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.more-row { width: 100%; display: flex; align-items: center; gap: 14px; padding: 12px 16px; min-height: 54px; border-bottom: 1px solid var(--border); color: var(--fg); text-decoration: none; font-size: 16px; font-weight: 450; background: none; font: inherit; text-align: left; }
+.more-row:last-child { border-bottom: 0; }
+.more-icon { width: 30px; height: 30px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.more-new { font-size: 10px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+.more-danger { color: var(--danger, #d64545); }
+.more-danger .more-icon { background: color-mix(in srgb, var(--danger, #d64545) 14%, transparent); color: var(--danger, #d64545); }
+.more-foot { text-align: center; font-size: 12px; color: var(--muted-2); }

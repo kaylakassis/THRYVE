@@ -298,7 +298,7 @@ function SparkBadge({ direction, size = 32 }) {
   return (
     <div style={{
       width: size, height: size, borderRadius: size * 0.31,
-      background: `linear-gradient(135deg, var(--accent), ${direction === 'bold' ? '#E5FF80' : '#5966B8'})`,
+      background: `linear-gradient(135deg, var(--accent), ${direction === 'bold' ? '#8FE0B4' : '#5966B8'})`,
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       color: 'var(--accent-ink)', flexShrink: 0,
     }}>
@@ -339,7 +339,7 @@ function InsightBanner({ context, direction, onAct }) {
     <div style={{
       position: 'relative', overflow: 'hidden',
       padding: '18px 20px', borderRadius: 14,
-      background: `linear-gradient(110deg, ${direction === 'bold' ? 'var(--accent)' : '#E8E4F2'}, ${direction === 'bold' ? '#E5FF80' : '#D5DBF2'})`,
+      background: `linear-gradient(110deg, ${direction === 'bold' ? 'var(--accent)' : '#E8E4F2'}, ${direction === 'bold' ? '#8FE0B4' : '#D5DBF2'})`,
       color: direction === 'bold' ? 'var(--accent-ink)' : '#2D2847',
       display: 'flex', alignItems: 'center', gap: 16,
     }}>
@@ -497,7 +497,7 @@ function ChatBubble({ msg }) {
       {!isMe && (
         <div style={{
           width: 28, height: 28, borderRadius: 8, flexShrink: 0,
-          background: 'linear-gradient(135deg, var(--accent), #E5FF80)',
+          background: 'linear-gradient(135deg, var(--accent), #8FE0B4)',
           color: 'var(--accent-ink)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}>
@@ -521,7 +521,7 @@ function ThinkingBubble() {
     <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
       <div style={{
         width: 28, height: 28, borderRadius: 8, flexShrink: 0,
-        background: 'linear-gradient(135deg, var(--accent), #E5FF80)',
+        background: 'linear-gradient(135deg, var(--accent), #8FE0B4)',
         color: 'var(--accent-ink)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}>

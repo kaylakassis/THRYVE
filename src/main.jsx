@@ -6,11 +6,17 @@ import { initMonitoring, ErrorBoundary } from './lib/monitoring.js';
 import { tryStaleChunkRecovery } from './lib/staleChunk.js';
 import { registerServiceWorker } from './lib/pwa.js';
 import { initNativeStatusBar } from './lib/nativeStatusBar.js';
+import { isNative } from './lib/platform.js';
 import App from './App.jsx';
+import './styles/fonts.css';
 import './styles/tokens.css';
 import './styles/global.css';
 
 initMonitoring();
+
+// Lets the stylesheet give the phone app its own chrome (see the
+// "NATIVE APP" block in global.css) without touching the web.
+if (isNative()) document.documentElement.classList.add('native');
 
 // Global capture for everything that escapes a React error boundary:
 //   • Promise rejections that no .catch() handled
@@ -53,7 +59,7 @@ function FatalFallback({ resetError, error }) {
         background: 'var(--surface, #FFFFFF)', border: '1px solid var(--border, #E8E4DC)',
         textAlign: 'center',
       }}>
-        <h1 style={{ margin: '0 0 8px', fontSize: 22, fontWeight: 500, fontFamily: '"Fraunces", Georgia, serif' }}>
+        <h1 style={{ margin: '0 0 8px', fontSize: 22, fontWeight: 500, fontFamily: 'var(--font-display)' }}>
           Something broke.
         </h1>
         <p style={{ margin: '0 0 20px', fontSize: 14, color: 'var(--muted, #85827B)', lineHeight: 1.55 }}>

@@ -77,7 +77,7 @@ export async function issueGiftCardFromSession({ workspaceId, session }) {
             <p><strong>${escapeHtml(senderName || 'Someone')}</strong> sent you a gift card to spend with <strong>${escapeHtml(branding.businessName || 'us')}</strong>.</p>
             ${giftMsg ? `<blockquote style="margin:16px 0;padding:12px 16px;border-left:3px solid #C7BFA8;background:#F6F5F1;border-radius:6px;font-size:14px;line-height:1.55;color:#3F3D38;white-space:pre-wrap;">${escapeHtml(giftMsg)}</blockquote>` : ''}
             <p style="font-size:13px;color:#85827B;">Card balance:</p>
-            <div style="font-size:28px;font-weight:600;font-family:Fraunces,Georgia,serif;letter-spacing:-0.02em;color:#141414;">$${(amountCents / 100).toFixed(2)}</div>
+            <div style="font-size:28px;font-weight:600;font-family:'Neue Haas Grotesk Display','Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:-0.02em;color:#141414;">$${(amountCents / 100).toFixed(2)}</div>
             <p style="font-size:13px;color:#85827B;margin-top:18px;">Your code:</p>
             <div style="font-family:ui-monospace,monospace;font-size:18px;font-weight:600;letter-spacing:0.04em;padding:10px 14px;background:#F6F5F1;border:1px solid #E8E4DC;border-radius:8px;display:inline-block;">${escapeHtml(rawCode)}</div>
             <p style="font-size:12px;color:#85827B;margin-top:18px;">Apply it on your booking page during checkout. Save this email - the code is shown only here.</p>`,

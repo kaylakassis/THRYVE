@@ -34,9 +34,12 @@
   --shadow-sm: 0 1px 2px rgba(1, 43, 36, 0.05);
   --shadow: 0 1px 2px rgba(1, 43, 36, 0.05), 0 8px 24px -12px rgba(1, 43, 36, 0.12);
 
-  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, sans-serif;
-  --font-num: 'Fraunces', Georgia, serif;
+  /* One typeface everywhere: Neue Haas Grotesk (see fonts.css). Regular for
+     text, Medium/Bold for headings; numbers use the display cut with
+     tabular figures. */
+  --font-display: 'Neue Haas Grotesk Display', 'Neue Haas Grotesk Text', 'Helvetica Neue', 'Inter', Helvetica, Arial, system-ui, sans-serif;
+  --font-sans: 'Neue Haas Grotesk Text', 'Helvetica Neue', 'Inter', Helvetica, Arial, system-ui, sans-serif;
+  --font-num: 'Neue Haas Grotesk Display', 'Neue Haas Grotesk Text', 'Helvetica Neue', 'Inter', Helvetica, Arial, system-ui, sans-serif;
 }
 
 .dir-bold {
@@ -68,7 +71,4 @@
   --shadow-sm: 0 1px 0 rgba(0,0,0,0.4);
   --shadow: 0 1px 0 rgba(0,0,0,0.4), 0 24px 48px -24px rgba(0,0,0,0.6);
 
-  --font-display: 'Space Grotesk', 'Inter', sans-serif;
-  --font-sans: 'Inter', sans-serif;
-  --font-num: 'Space Grotesk', 'Inter', sans-serif;
 }

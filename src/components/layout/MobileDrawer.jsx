@@ -54,10 +54,10 @@ export default function MobileDrawer({ onClose }) {
         <div style={{ padding: '18px 16px 12px', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{
             width: 32, height: 32, borderRadius: 8,
-            background: 'var(--accent)', color: 'var(--accent-ink)',
+            background: '#042b25', overflow: 'hidden',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            <Icons.Logo size={22} color="currentColor"/>
+            <img src="/icon-512.png" alt="" draggable="false" style={{ width: '100%', height: '100%', display: 'block' }}/>
           </div>
           <div style={{ flex: 1, lineHeight: 1 }}>
             <div style={{

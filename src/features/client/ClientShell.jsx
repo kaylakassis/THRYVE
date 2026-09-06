@@ -156,10 +156,10 @@ function BrandMark({ direction, compact }) {
       justifyContent: compact ? 'center' : 'flex-start' }}>
       <div style={{
         width: compact ? 36 : 30, height: compact ? 36 : 30, borderRadius: 8,
-        background: 'var(--accent)', color: 'var(--accent-ink)',
+        background: '#042b25', overflow: 'hidden',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}>
-        <Icons.Logo size={compact ? 22 : 20} color="currentColor"/>
+        <img src="/icon-512.png" alt="" draggable="false" style={{ width: '100%', height: '100%', display: 'block' }}/>
       </div>
       {!compact && (
         <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1, flex: 1 }}>

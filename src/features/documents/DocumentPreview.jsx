@@ -56,7 +56,7 @@ export default function DocumentPreview({
               {businessName || 'Your business'}
             </div>
             <div style={{
-              fontFamily: 'Fraunces, Georgia, serif',
+              fontFamily: 'var(--font-display)',
               fontSize: 26, fontWeight: 500, letterSpacing: '-0.02em',
               color: '#0F0F0F', lineHeight: 1.2,
             }}>

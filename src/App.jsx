@@ -41,6 +41,7 @@ const Website     = lazy(() => import('./features/website/Website.jsx'));
 const IvyPro      = lazy(() => import('./features/ivy/IvyPro.jsx'));
 const AccountPage = lazy(() => import('./features/account/AccountPage.jsx'));
 const AdminPage   = lazy(() => import('./features/admin/AdminPage.jsx'));
+const MorePage    = lazy(() => import('./features/more/MorePage.jsx'));
 
 // ── Lazy: client portal ──
 const ClientHome      = lazy(() => import('./features/client/ClientHome.jsx'));
@@ -293,6 +294,7 @@ export default function App() {
           <Route path="/website"    element={<Website />} />
           <Route path="/ivy"        element={<IvyPro />} />
           <Route path="/account"    element={<AccountPage />} />
+          <Route path="/more"       element={<NativeOnly><MorePage /></NativeOnly>} />
           <Route path="/admin"      element={<AdminPage />} />
         </Route>
 

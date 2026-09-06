@@ -185,10 +185,10 @@ export function SimpleNav() {
         }}>
           <div style={{
             width: 32, height: 32, borderRadius: 8,
-            background: 'var(--accent)', color: 'var(--accent-ink)',
+            background: '#042b25', overflow: 'hidden',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            <Icons.Logo size={20} color="currentColor"/>
+            <img src="/icon-512.png" alt="" draggable="false" style={{ width: '100%', height: '100%', display: 'block' }}/>
           </div>
           <span style={{
             fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: 19,

@@ -262,8 +262,8 @@ export function emailShell({ heading, body, ctaText, ctaUrl, footer, branding, p
   const businessName = (branding?.businessName || '').trim();
   const logoUrl = sanitizeUrl(branding?.logoUrl);
   const sig = (branding?.emailSignature || '').trim();
-  const fontDisplay = `'Fraunces','Iowan Old Style',Georgia,serif`;
-  const fontSans    = `-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',Helvetica,Arial,sans-serif`;
+  const fontDisplay = `'Neue Haas Grotesk Display','Neue Haas Grotesk Text','Helvetica Neue',Helvetica,Arial,sans-serif`;
+  const fontSans    = `'Neue Haas Grotesk Text','Helvetica Neue',Helvetica,Arial,sans-serif`;
 
   // Letterhead: logo > business name > Ivy wordmark. The "Business
   // OS" tag is dropped when a workspace is branded so the recipient

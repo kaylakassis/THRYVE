@@ -22,7 +22,7 @@ const CSS = `
 .ivy-w .mark { position: relative; width: 132px; height: 132px; border-radius: 30px; overflow: hidden; background: #042b25;
   box-shadow: 0 24px 60px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08); animation: ivy-w-pop .7s cubic-bezier(.2,.8,.2,1) both; }
 .ivy-w .mark img { width: 100%; height: 100%; display: block; }
-.ivy-w h1 { font-family: var(--font-display, 'Space Grotesk', Inter, sans-serif); font-size: 46px; font-weight: 600;
+.ivy-w h1 { font-family: var(--font-display); font-size: 46px; font-weight: 600;
   letter-spacing: -.03em; line-height: 1; margin: 32px 0 0; animation: ivy-w-rise .6s ease-out .9s both; }
 .ivy-w p { margin: 12px 0 0; font-size: 16px; line-height: 1.5; color: #C9CAC3; text-align: center; max-width: 28ch;
   animation: ivy-w-rise .6s ease-out 1.05s both; }

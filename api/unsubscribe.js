@@ -30,7 +30,7 @@ const PAGE_OK = (label) => `<!doctype html>
   body{margin:0;background:#012B24;color:#ECF0F1;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',Helvetica,Arial,sans-serif;
        display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
   .card{max-width:480px;width:100%;background:#04352D;border:1px solid #164B3F;border-radius:16px;padding:36px 32px;text-align:center;}
-  h1{margin:0 0 14px;font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:500;letter-spacing:-0.025em;color:#5CC98E;}
+  h1{margin:0 0 14px;font-family:'Neue Haas Grotesk Display','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:26px;font-weight:500;letter-spacing:-0.025em;color:#5CC98E;}
   p{margin:0 0 12px;line-height:1.6;font-size:15px;color:#C5D1CE;}
   small{display:block;margin-top:18px;font-size:12px;color:#93A3A0;}
   a{color:#5CC98E;text-decoration:none;}

@@ -54,10 +54,10 @@ export default function Sidebar({ variant = 'full' }) {
       }}>
         <div style={{
           width: 36, height: 36, margin: '0 auto', borderRadius: 8,
-          background: 'var(--accent)', color: 'var(--accent-ink)',
+          background: '#042b25', overflow: 'hidden',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}>
-          <Icons.Logo size={22} color="currentColor"/>
+          <img src="/icon-512.png" alt="" draggable="false" style={{ width: '100%', height: '100%', display: 'block' }}/>
         </div>
 
         <nav style={{
@@ -108,10 +108,10 @@ export default function Sidebar({ variant = 'full' }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '4px 6px' }}>
         <div style={{
           width: 30, height: 30, borderRadius: 8,
-          background: 'var(--accent)', color: 'var(--accent-ink)',
+          background: '#042b25', overflow: 'hidden',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}>
-          <Icons.Logo size={20} color="currentColor" />
+          <img src="/icon-512.png" alt="" draggable="false" style={{ width: '100%', height: '100%', display: 'block' }}/>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
           <span style={{

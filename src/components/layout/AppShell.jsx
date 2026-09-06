@@ -6,7 +6,7 @@
 // Wraps everything in UserContextProvider so the floating ViewToggle and
 // the Paywall (which gates the business app when the workspace's
 // subscription isn't active) can read /api/me from a single round-trip.
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from '../../lib/monitoring.js';
 import { tryStaleChunkRecovery } from '../../lib/staleChunk.js';
@@ -31,6 +31,7 @@ import { useViewport } from '../../lib/viewport.js';
 import { initNativePushOnLaunch } from '../../lib/nativePush.js';
 import { UserContextProvider, useUserContext } from '../../lib/userContext.jsx';
 import { useAuth } from '../../lib/auth.jsx';
+import { isNative } from '../../lib/platform.js';
 
 export default function AppShell() {
   return (
@@ -56,10 +57,43 @@ function AppShellInner() {
   // title + the right tutorial (rather than falling back to NAV[0]
   // and blasting the Dashboard tutorial on every Account visit).
   const ACCOUNT = { id: 'account', to: '/account' };
-  const current = location.pathname === '/account'
-    ? ACCOUNT
+  const MORE = { id: 'more', to: '/more' };
+  const current = location.pathname === '/account' ? ACCOUNT
+    : location.pathname === '/more' ? MORE
     : (NAV.find(n => n.to === location.pathname) || NAV[0]);
   const t = TITLES[current.id] || TITLES.dashboard;
+  const native = isNative();
+
+  // Native app: pages open with their own big heading ("Clients" + a line
+  // of copy) right under a header that already says "Clients". Two titles
+  // is what makes a screen read as a web page, so mark the page heading
+  // that repeats the header title (and the one-line blurb under it) and
+  // let CSS hide them. Pages that lead with something else - the
+  // dashboard's "Good morning." - keep their heading. Observed rather
+  // than edited per page so every tab behaves the same.
+  const pageRef = useRef(null);
+  useEffect(() => {
+    if (!native) return;
+    const root = pageRef.current;
+    if (!root) return;
+    const norm = (v) => (v || '').trim().replace(/[.:]$/, '').toLowerCase();
+    const want = norm(t.title);
+    let raf = 0;
+    const mark = () => {
+      raf = 0;
+      root.querySelectorAll('.page-title').forEach((h) => {
+        const dup = norm(h.textContent) === want;
+        h.toggleAttribute('data-dup-title', dup);
+        const sib = h.nextElementSibling;
+        if (sib && sib.children.length === 0) sib.toggleAttribute('data-dup-sub', dup);
+      });
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(mark); };
+    schedule();
+    const mo = new MutationObserver(schedule);
+    mo.observe(root, { childList: true, subtree: true, characterData: true });
+    return () => { mo.disconnect(); cancelAnimationFrame(raf); };
+  }, [native, t.title, location.pathname]);
 
   // Paywall only applies to owners. Client-only users land here briefly
   // when the role router is still resolving - never gate them.
@@ -158,7 +192,7 @@ function AppShellInner() {
               96px on pages that opt in; this catches pages that don't
               (Dashboard, etc.). Mobile gets its own reservation via
               body.has-mobile-nav rules. */}
-          <div style={{
+          <div ref={pageRef} className="app-page" style={{
             flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0,
             paddingBottom: viewport.isMobile ? 0 : 80,
           }}>
@@ -179,7 +213,7 @@ function AppShellInner() {
       </div>
 
       {viewport.isMobile && <MobileBottomNav />}
-      {viewport.isMobile && drawerOpen && (
+      {viewport.isMobile && !native && drawerOpen && (
         <MobileDrawer direction={tweaks.direction} onClose={() => setDrawerOpen(false)} />
       )}
 
@@ -218,7 +252,8 @@ function AppShellInner() {
       {/* Ivy bubble - only render once the user is past the paywall and
           (when applicable) the walkthrough overlay isn't covering the
           screen. Otherwise the FAB peeks through the modal scrim. */}
-      {!needsPaywall && !showWalkthrough && <IvyDock/>}
+      {/* The floating Ivy bubble is a web affordance; on the phone Ivy is a tab. */}
+      {!needsPaywall && !showWalkthrough && !native && <IvyDock/>}
       {/* Per-tab tutorial overlay. Reads activeTabId from TutorialProvider;
           renders nothing until a tab is opened (auto-trigger from Topbar
           on first visit, or manual via the (i) button). Gated on the paywall
@@ -249,8 +284,8 @@ function RouteCrashInline({ error, resetError }) {
           letterSpacing: '-0.02em', marginBottom: 8,
         }}>This tab couldn't load.</div>
         <div style={{ color: 'var(--muted)', fontSize: 13.5, lineHeight: 1.55, marginBottom: 12 }}>
-          The rest of your workspace is still working - pick another tab
-          from the sidebar, or try this one again.
+          The rest of your workspace is still working - pick another tab,
+          or try this one again.
         </div>
         <div style={{
           fontSize: 11.5, color: 'var(--muted-2)', background: 'var(--surface-2)',

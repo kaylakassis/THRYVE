@@ -1,0 +1,14 @@
+/* Neue Haas Grotesk - Ivy's typeface. Regular (400) for text, Medium (500)
+   and Bold (700) for headings and titles.
+
+   The font is licensed, so the files are NOT in the repository. Put the
+   .woff2 files into public/fonts/ under exactly these names and every page
+   (website, app, iPhone app) picks them up - see docs/FONTS.md. Until the
+   files exist, the stack falls through to Helvetica Neue on iPhone and Mac
+   (Neue Haas Grotesk's direct descendant), then Inter, then Arial. */
+@font-face { font-family: 'Neue Haas Grotesk Text'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/NeueHaasGroteskText-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'Neue Haas Grotesk Text'; font-weight: 400; font-style: italic; font-display: swap; src: url('/fonts/NeueHaasGroteskText-Italic.woff2') format('woff2'); }
+@font-face { font-family: 'Neue Haas Grotesk Text'; font-weight: 500; font-style: normal; font-display: swap; src: url('/fonts/NeueHaasGroteskText-Medium.woff2') format('woff2'); }
+@font-face { font-family: 'Neue Haas Grotesk Text'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/NeueHaasGroteskText-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'Neue Haas Grotesk Display'; font-weight: 500; font-style: normal; font-display: swap; src: url('/fonts/NeueHaasGroteskDisplay-Medium.woff2') format('woff2'); }
+@font-face { font-family: 'Neue Haas Grotesk Display'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/NeueHaasGroteskDisplay-Bold.woff2') format('woff2'); }

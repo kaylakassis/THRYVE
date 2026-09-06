@@ -237,7 +237,7 @@ function FabButton({ onClick, notify, isMobile }) {
 function IvyMark({ size = 22 }) {
   return (
     <span style={{
-      fontFamily: 'Fraunces, "Cormorant Garamond", Georgia, serif',
+      fontFamily: 'var(--font-display)',
       fontWeight: 600, fontSize: size, lineHeight: 1,
       letterSpacing: '-0.02em',
     }}>
@@ -313,7 +313,7 @@ function Panel({ isMobile, onClose, onExpand, onNewChat, ivy, suggestions }) {
           width: 32, height: 32, borderRadius: 999,
           background: 'var(--accent)', color: 'var(--accent-ink)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontFamily: 'Fraunces, Georgia, serif', fontWeight: 600, fontSize: 15,
+          fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15,
         }}>
           Ivy
         </div>
@@ -449,7 +449,7 @@ function Welcome({ context, briefing, suggestions, onPick }) {
   return (
     <div style={{ padding: '6px 4px 12px' }}>
       <div style={{
-        fontFamily: 'Fraunces, Georgia, serif',
+        fontFamily: 'var(--font-display)',
         fontSize: 22, lineHeight: 1.2, color: 'var(--fg)',
         marginBottom: 6,
       }}>

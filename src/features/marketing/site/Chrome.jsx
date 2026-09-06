@@ -128,12 +128,12 @@ export function StickyCta() {
 // Scoped inside .site-root so the app's global.css and these styles can't
 // fight each other.
 export const BASE_CSS = `
-.site-root{--bg:#012B24;--panel:#04352D;--panel2:#0B4136;--border:#164B3F;--border2:#276353;--text:#ECF0F1;--muted:#C5D1CE;--dim:#93A3A0;--lime:#5CC98E;--ink:#012B24;--tint:#0A3D2F;--head:'Space Grotesk',Inter,sans-serif;font-family:Inter,-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+.site-root{--bg:#012B24;--panel:#04352D;--panel2:#0B4136;--border:#164B3F;--border2:#276353;--text:#ECF0F1;--muted:#C5D1CE;--dim:#93A3A0;--lime:#5CC98E;--ink:#012B24;--tint:#0A3D2F;--head:'Neue Haas Grotesk Display','Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;font-family:'Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
 .site-root *{margin:0;padding:0;box-sizing:border-box}
 .site-root a{color:inherit;text-decoration:none}
 .site-root .container{max-width:1120px;margin:0 auto;padding:0 24px}
 .site-root .lime{color:var(--lime)}
-.site-root .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 26px;border-radius:8px;transition:.2s;cursor:pointer;border:none;font-family:Inter,sans-serif}
+.site-root .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 26px;border-radius:8px;transition:.2s;cursor:pointer;border:none;font-family:inherit}
 .site-root .btn-primary{background:var(--lime);color:var(--ink)}
 .site-root .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(92,201,142,.3)}
 .site-root .btn-ghost{border:1px solid var(--border2);color:var(--text);background:transparent}
@@ -149,7 +149,7 @@ export const BASE_CSS = `
 .site-root .nav-cta .login{font-size:14.5px;color:var(--muted);font-weight:500;text-decoration:underline;text-underline-offset:3px}
 .site-root .btn-sm{padding:8px 18px;font-size:14px}
 .site-root h1,.site-root h2,.site-root h3,.site-root h4{font-family:var(--head);font-weight:500}
-.site-root .eyebrow{display:inline-block;font-family:Inter,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);background:var(--tint);border:1px solid rgba(92,201,142,.25);padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.site-root .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);background:var(--tint);border:1px solid rgba(92,201,142,.25);padding:6px 14px;border-radius:999px;margin-bottom:20px;font-family:inherit}
 .site-root .trust{font-size:13.5px;color:var(--dim)}
 .site-root .alt{background:var(--panel);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .site-root .center{text-align:center}
@@ -182,7 +182,7 @@ export function useSiteFonts() {
     if (document.getElementById('site-fonts')) return;
     const l = document.createElement('link');
     l.id = 'site-fonts'; l.rel = 'stylesheet';
-    l.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap';
+    l.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
     document.head.appendChild(l);
   }, []);
 }

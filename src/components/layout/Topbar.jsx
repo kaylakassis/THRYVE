@@ -15,6 +15,7 @@ import { Icons } from '../Icons.jsx';
 import { useTutorial } from '../../lib/tutorialState.jsx';
 import { getTutorial } from '../../lib/tutorials.js';
 import NotificationBell from './NotificationBell.jsx';
+import { isNative } from '../../lib/platform.js';
 
 // Synthesize the same Cmd+K event the CommandPalette listens for. This
 // keeps the topbar dumb (no prop drilling) and the palette as the single
@@ -27,6 +28,10 @@ function openPalette() {
 
 export default function Topbar({ title, subtitle, isMobile, isTablet, onMenuClick, tabId, paywalled, children }) {
   const compact = isMobile || isTablet;
+  // Native app: no hamburger (the tab bar's More tab replaces the drawer),
+  // no tutorial (i), and unboxed icon buttons - the header reads like an
+  // iOS navigation bar instead of an admin panel.
+  const native = isNative();
   const navigate = useNavigate();
   const tutorial = useTutorial();
   const hasTutorial = tabId && getTutorial(tabId);
@@ -52,14 +57,14 @@ export default function Topbar({ title, subtitle, isMobile, isTablet, onMenuClic
   }, [tabId, tutorial.ready, hasTutorial, paywalled]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <header style={{
+    <header className={native ? 'app-topbar native' : 'app-topbar'} style={{
       display: 'flex', alignItems: 'center', gap: isMobile ? 10 : 16,
-      padding: isMobile ? '12px 14px' : '22px 32px 18px',
+      padding: native ? '8px 8px 8px 20px' : (isMobile ? '12px 14px' : '22px 32px 18px'),
       borderBottom: '1px solid var(--border)',
       background: 'var(--page)',
       position: 'sticky', top: 0, zIndex: 40,
     }}>
-      {isMobile && (
+      {isMobile && !native && (
         <button onClick={onMenuClick}
           aria-label="Open menu"
           style={{
@@ -82,13 +87,14 @@ export default function Topbar({ title, subtitle, isMobile, isTablet, onMenuClic
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
           <h1 className="page-title" style={{
             margin: 0,
-            fontSize: isMobile ? 20 : 28,
+            fontSize: native ? 22 : (isMobile ? 20 : 28),
+            letterSpacing: native ? '-0.02em' : undefined,
             whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
             minWidth: 0,
           }}>
             {isMobile ? title : (subtitle || title)}
           </h1>
-          {hasTutorial && (
+          {hasTutorial && !native && (
             <button type="button"
               onClick={() => tutorial.open(tabId)}
               aria-label={`Replay ${title} tutorial`}
@@ -158,17 +164,17 @@ export default function Topbar({ title, subtitle, isMobile, isTablet, onMenuClic
         </button>
       )}
 
-      <button className="btn btn-outline" aria-label="Messages"
+      <button className={native ? 'topbar-icon-btn' : 'btn btn-outline'} aria-label="Messages"
         onClick={() => navigate('/messages')}
         title="Messages"
-        style={{
+        style={native ? undefined : {
           position: 'relative',
           padding: isMobile ? 8 : undefined,
         }}>
-        <Icons.Chat size={isMobile ? 16 : 15}/>
+        <Icons.Chat size={native ? 20 : (isMobile ? 16 : 15)} sw={native ? 1.7 : undefined}/>
       </button>
 
-      <NotificationBell isMobile={isMobile}/>
+      <NotificationBell isMobile={isMobile} plain={native}/>
 
       {children}
     </header>

@@ -52,7 +52,7 @@ function deltaSub(curr, prior, { money = false } = {}) {
 function statTile(label, value, sub) {
   return `<td style="padding:14px 16px;background:#0B4136;border:1px solid #164B3F;border-radius:10px;vertical-align:top;width:50%;">
     <div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;color:#93A3A0;">${escapeHtml(label)}</div>
-    <div style="margin-top:6px;font-family:'Fraunces','Iowan Old Style',Georgia,serif;font-size:30px;letter-spacing:-0.02em;font-weight:500;color:#ECF0F1;line-height:1;">${escapeHtml(String(value))}</div>
+    <div style="margin-top:6px;font-family:'Neue Haas Grotesk Display','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:30px;letter-spacing:-0.02em;font-weight:500;color:#ECF0F1;line-height:1;">${escapeHtml(String(value))}</div>
     ${sub ? `<div style="margin-top:4px;font-size:12px;color:#C5D1CE;line-height:1.4;">${escapeHtml(sub)}</div>` : ''}
   </td>`;
 }

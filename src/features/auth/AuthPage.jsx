@@ -115,7 +115,7 @@ export default function AuthPage({ mode = 'signin' }) {
   if (mfaStep) {
     return (
       <AuthShell>
-        <form onSubmit={mfaSubmit} className="card" style={{
+        <form onSubmit={mfaSubmit} className="card auth-card" style={{
           width: '100%', maxWidth: 420, padding: 32,
           display: 'flex', flexDirection: 'column', gap: 18,
         }}>
@@ -146,21 +146,21 @@ export default function AuthPage({ mode = 'signin' }) {
 
   return (
     <AuthShell>
-      <form onSubmit={submit} className="card" style={{
+      <form onSubmit={submit} className="card auth-card" style={{
         width: '100%', maxWidth: 420, padding: 32,
         display: 'flex', flexDirection: 'column', gap: 18,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{
             width: 34, height: 34, borderRadius: 8,
-            background: 'var(--accent)', color: 'var(--accent-ink)',
+            background: '#042b25', overflow: 'hidden',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            <Icons.Logo size={22} color="currentColor" />
+            <img src="/icon-512.png" alt="" draggable="false" style={{ width: '100%', height: '100%', display: 'block' }}/>
           </div>
           <div>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 500, letterSpacing: '-0.01em' }}>Ivy</div>
-            <div className="metric-label" style={{ fontSize: 10, marginTop: 2 }}>All-in-one for solopreneurs</div>
+            <div className="metric-label auth-tagline" style={{ fontSize: 10, marginTop: 2 }}>All-in-one for solopreneurs</div>
           </div>
         </div>
 
