@@ -1,3 +1,15 @@
+/* Typeface tokens live on :root so they reach EVERY element - both themes,
+   the auth pages, modals rendered outside the app shell. (They used to sit
+   inside .dir-calm only, which left dark mode and everything else with no
+   font-family at all and the browser fell back to Times.) One typeface
+   everywhere: Neue Haas Grotesk (see fonts.css). Regular for text,
+   Medium/Bold for headings; numbers use the display cut. */
+:root {
+  --font-display: 'Neue Haas Grotesk Display', 'Neue Haas Grotesk Text', 'Helvetica Neue', 'Inter', Helvetica, Arial, system-ui, sans-serif;
+  --font-sans: 'Neue Haas Grotesk Text', 'Helvetica Neue', 'Inter', Helvetica, Arial, system-ui, sans-serif;
+  --font-num: 'Neue Haas Grotesk Display', 'Neue Haas Grotesk Text', 'Helvetica Neue', 'Inter', Helvetica, Arial, system-ui, sans-serif;
+}
+
 /* ============================================================
    Ivy - shared tokens for both directions (Calm + Bold)
    Palette: #012B24 deep green, #004225 green, #7F8C8D grey, #ECF0F1 off-white, #151515 near-black.
@@ -34,12 +46,6 @@
   --shadow-sm: 0 1px 2px rgba(1, 43, 36, 0.05);
   --shadow: 0 1px 2px rgba(1, 43, 36, 0.05), 0 8px 24px -12px rgba(1, 43, 36, 0.12);
 
-  /* One typeface everywhere: Neue Haas Grotesk (see fonts.css). Regular for
-     text, Medium/Bold for headings; numbers use the display cut with
-     tabular figures. */
-  --font-display: 'Neue Haas Grotesk Display', 'Neue Haas Grotesk Text', 'Helvetica Neue', 'Inter', Helvetica, Arial, system-ui, sans-serif;
-  --font-sans: 'Neue Haas Grotesk Text', 'Helvetica Neue', 'Inter', Helvetica, Arial, system-ui, sans-serif;
-  --font-num: 'Neue Haas Grotesk Display', 'Neue Haas Grotesk Text', 'Helvetica Neue', 'Inter', Helvetica, Arial, system-ui, sans-serif;
 }
 
 .dir-bold {
