@@ -1,8 +1,9 @@
 // Shared chrome for the new marketing site (ported from the ivy-site-handoff
 // prototype). Every marketing page renders <SiteNav active=".."/> + content +
 // <SiteFooter/> + <StickyCta/>, and calls usePageMeta for title/meta/JSON-LD.
-// Design tokens (the Ivy green palette: #012B24 / #004225 / #7F8C8D / #ECF0F1 /
-// #151515, with #5CC98E as the accent that reads on deep green) + base styles live in BASE_CSS, injected once per page via a
+// Design tokens mirror the app's dark theme exactly (src/styles/tokens.css
+// .dir-bold): #151515 ground, #1C201F surfaces, #4CBA7F accent, #012B24 deep
+// green for the footer. Base styles live in BASE_CSS, injected once per page via a
 // <style> tag so the pages stay pixel-faithful to the prototype.
 import React, { useEffect, useState } from 'react';
 
@@ -128,17 +129,17 @@ export function StickyCta() {
 // Scoped inside .site-root so the app's global.css and these styles can't
 // fight each other.
 export const BASE_CSS = `
-.site-root{--bg:#012B24;--panel:#04352D;--panel2:#0B4136;--border:#164B3F;--border2:#276353;--text:#ECF0F1;--muted:#C5D1CE;--dim:#93A3A0;--lime:#5CC98E;--ink:#012B24;--tint:#0A3D2F;--head:'Neue Haas Grotesk Display','Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;font-family:'Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+.site-root{--bg:#151515;--panel:#1C201F;--panel2:#232928;--border:#2D3533;--border2:#3D4745;--text:#ECF0F1;--muted:#C5CECC;--dim:#98A4A2;--lime:#4CBA7F;--ink:#012B24;--tint:#16382A;--deep:#012B24;--head:'Neue Haas Grotesk Display','Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;font-family:'Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
 .site-root *{margin:0;padding:0;box-sizing:border-box}
 .site-root a{color:inherit;text-decoration:none}
 .site-root .container{max-width:1120px;margin:0 auto;padding:0 24px}
 .site-root .lime{color:var(--lime)}
 .site-root .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 26px;border-radius:8px;transition:.2s;cursor:pointer;border:none;font-family:inherit}
 .site-root .btn-primary{background:var(--lime);color:var(--ink)}
-.site-root .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(92,201,142,.3)}
+.site-root .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(76,186,127,.3)}
 .site-root .btn-ghost{border:1px solid var(--border2);color:var(--text);background:transparent}
 .site-root .btn-ghost:hover{border-color:var(--lime);color:var(--lime)}
-.site-root .site-nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(16px);background:rgba(1,43,36,.92);border-bottom:1px solid var(--border)}
+.site-root .site-nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(16px);background:rgba(21,21,21,.92);border-bottom:1px solid var(--border)}
 .site-root .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
 .site-root .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:19px;font-family:var(--head)}
 .site-root .logo-mark{width:28px;height:28px;border-radius:8px;display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(236,240,241,.12)}
@@ -149,22 +150,22 @@ export const BASE_CSS = `
 .site-root .nav-cta .login{font-size:14.5px;color:var(--muted);font-weight:500;text-decoration:underline;text-underline-offset:3px}
 .site-root .btn-sm{padding:8px 18px;font-size:14px}
 .site-root h1,.site-root h2,.site-root h3,.site-root h4{font-family:var(--head);font-weight:500}
-.site-root .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);background:var(--tint);border:1px solid rgba(92,201,142,.25);padding:6px 14px;border-radius:999px;margin-bottom:20px;font-family:inherit}
+.site-root .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);background:var(--tint);border:1px solid rgba(76,186,127,.25);padding:6px 14px;border-radius:999px;margin-bottom:20px;font-family:inherit}
 .site-root .trust{font-size:13.5px;color:var(--dim)}
 .site-root .alt{background:var(--panel);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .site-root .center{text-align:center}
 .site-root .center .section-sub{margin:0 auto}
 .site-root .section-sub{font-size:17px;color:var(--muted);max-width:620px}
 .site-root .menu-btn{display:none;background:none;border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:6px 12px;font-size:18px;cursor:pointer;line-height:1.2}
-.site-root .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(1,43,36,.98);border-bottom:1px solid var(--border);z-index:99;padding:8px 24px 18px}
+.site-root .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(21,21,21,.98);border-bottom:1px solid var(--border);z-index:99;padding:8px 24px 18px}
 .site-root .mobile-menu a{display:block;padding:13px 0;font-size:16px;color:var(--muted);border-bottom:1px solid var(--border)}
 .site-root .mobile-menu a:last-child{border-bottom:none}
 .site-root .mobile-menu.open{display:block}
-.site-root .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:98;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(1,43,36,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:none;transform:translateY(110%);transition:.3s}
+.site-root .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:98;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(21,21,21,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:none;transform:translateY(110%);transition:.3s}
 .site-root .sticky-cta.show{transform:none}
 .site-root .sticky-cta .btn{width:100%;justify-content:center}
 .site-root .sticky-cta .note{text-align:center;font-size:11.5px;color:var(--dim);margin-top:5px}
-.site-root .site-foot{border-top:1px solid var(--border);padding:56px 0 40px;background:var(--panel)}
+.site-root .site-foot{border-top:1px solid var(--border);padding:56px 0 40px;background:var(--deep)}
 .site-root .foot-inner{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
 .site-root .foot-brand{max-width:280px}
 .site-root .foot-brand p{font-size:13.5px;color:var(--dim);margin-top:12px}

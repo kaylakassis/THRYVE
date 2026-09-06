@@ -20,12 +20,12 @@ const PAGE_CSS = `
 .site-root h1{font-size:clamp(34px,4.4vw,52px);letter-spacing:-.025em;line-height:1.12;margin-bottom:18px}
 .site-root h2{font-size:clamp(22px,2.6vw,28px);letter-spacing:-.02em;margin-bottom:20px}
 .site-root .page-head{padding:160px 0 48px;position:relative;text-align:center}
-.site-root .page-head::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:550px;background:radial-gradient(ellipse,rgba(92,201,142,.09) 0%,transparent 65%);pointer-events:none}
+.site-root .page-head::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:550px;background:radial-gradient(ellipse,rgba(76,186,127,.09) 0%,transparent 65%);pointer-events:none}
 .site-root .lede{font-size:18px;color:var(--muted);max-width:620px;margin:0 auto}
 .site-root section{padding:48px 0}
 .site-root .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .site-root .contact-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:28px;display:flex;flex-direction:column}
-.site-root .contact-card .icon{width:40px;height:40px;border-radius:10px;background:var(--tint);border:1px solid rgba(92,201,142,.25);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+.site-root .contact-card .icon{width:40px;height:40px;border-radius:10px;background:var(--tint);border:1px solid rgba(76,186,127,.25);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
 .site-root .contact-card h3{font-size:17px;font-weight:600;margin-bottom:8px}
 .site-root .contact-card p{font-size:14.5px;color:var(--muted);margin-bottom:16px;flex:1 1 auto}
 .site-root .contact-card a.mail{font-size:16px;font-weight:600;color:var(--lime);text-decoration:none;word-break:break-all}
