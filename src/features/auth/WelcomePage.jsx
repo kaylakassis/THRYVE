@@ -12,18 +12,16 @@ const CSS = `
 @keyframes ivy-w-rise { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
 @keyframes ivy-w-pop  { 0% { transform: scale(.55); opacity: 0 } 65% { transform: scale(1.06); opacity: 1 } 100% { transform: scale(1) } }
 @keyframes ivy-w-glow { 0%,100% { transform: translate(-50%,-50%) scale(1) } 50% { transform: translate(-44%,-56%) scale(1.18) } }
-.ivy-w { position: fixed; inset: 0; background: #0D0E0C; color: #F3F3EE; overflow: hidden;
+.ivy-w { position: fixed; inset: 0; background: #042b25; color: #F3F3EE; overflow: hidden;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding: calc(env(safe-area-inset-top, 0px) + 24px) 28px calc(env(safe-area-inset-bottom, 0px) + 28px);
   font-family: var(--font-sans, Inter, -apple-system, sans-serif); -webkit-tap-highlight-color: transparent; }
 .ivy-w .glow { position: absolute; left: 50%; top: 40%; width: 640px; height: 640px; border-radius: 50%; pointer-events: none; will-change: transform;
   background: radial-gradient(circle, rgba(207,255,80,.18) 0%, rgba(207,255,80,.06) 32%, transparent 62%);
   animation: ivy-w-glow 9s ease-in-out infinite; }
-.ivy-w .mark { position: relative; width: 116px; height: 116px; border-radius: 32px; background: #CFFF50;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 24px 60px -24px rgba(207,255,80,.5); animation: ivy-w-pop .7s cubic-bezier(.2,.8,.2,1) both; }
-.ivy-w .mark path { stroke: #0B0C08; stroke-width: 11; fill: none; stroke-linecap: round; stroke-linejoin: round;
-  stroke-dasharray: 90; stroke-dashoffset: 90; animation: ivy-w-draw .55s ease-out .5s forwards; }
+.ivy-w .mark { position: relative; width: 132px; height: 132px; border-radius: 30px; overflow: hidden; background: #042b25;
+  box-shadow: 0 24px 60px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08); animation: ivy-w-pop .7s cubic-bezier(.2,.8,.2,1) both; }
+.ivy-w .mark img { width: 100%; height: 100%; display: block; }
 .ivy-w h1 { font-family: var(--font-display, 'Space Grotesk', Inter, sans-serif); font-size: 46px; font-weight: 600;
   letter-spacing: -.03em; line-height: 1; margin: 32px 0 0; animation: ivy-w-rise .6s ease-out .9s both; }
 .ivy-w p { margin: 12px 0 0; font-size: 16px; line-height: 1.5; color: #C9CAC3; text-align: center; max-width: 28ch;
@@ -31,17 +29,15 @@ const CSS = `
 .ivy-w .actions { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 360px; margin-top: 44px;
   animation: ivy-w-rise .6s ease-out 1.2s both; }
 .ivy-w .primary { background: #CFFF50; color: #0B0C08; border: 0; border-radius: 14px; padding: 16px; font: inherit; font-size: 17px; font-weight: 700; }
-.ivy-w .secondary { background: transparent; color: #F3F3EE; border: 1.5px solid #383D41; border-radius: 14px; padding: 15px; font: inherit; font-size: 16px; font-weight: 600; }
+.ivy-w .secondary { background: transparent; color: #F3F3EE; border: 1.5px solid rgba(255,255,255,.28); border-radius: 14px; padding: 15px; font: inherit; font-size: 16px; font-weight: 600; }
 .ivy-w .legal { position: absolute; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); font-size: 12px; color: #8A8D85;
   display: flex; gap: 16px; animation: ivy-w-rise .6s ease-out 1.35s both; }
 .ivy-w .legal a { color: inherit; text-decoration: none }
 .ivy-w.settled .mark, .ivy-w.settled h1, .ivy-w.settled p, .ivy-w.settled .actions, .ivy-w.settled .legal { animation: none; opacity: 1; transform: none }
-.ivy-w.settled .mark path { animation: none; stroke-dashoffset: 0 }
 @media (prefers-reduced-motion: reduce) {
   .ivy-w .glow { animation: none }
   .ivy-w .mark, .ivy-w h1, .ivy-w p, .ivy-w .actions, .ivy-w .legal { animation: none; opacity: 1; transform: none }
-  .ivy-w .mark path { animation: none; stroke-dashoffset: 0 }
-}
+  }
 `;
 
 function signedIn() {
@@ -58,7 +54,7 @@ export default function WelcomePage() {
       <style>{CSS}</style>
       <div className="glow" aria-hidden="true"/>
       <div className="mark" aria-hidden="true">
-        <svg width="64" height="64" viewBox="0 0 100 100"><path d="M27 52 L44 69 L75 35"/></svg>
+        <img src="/icon-512.png" alt="" draggable="false"/>
       </div>
       <h1>Ivy</h1>
       <p>Bookings, invoices, clients and an assistant that does the admin. One app.</p>

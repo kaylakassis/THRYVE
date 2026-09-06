@@ -59,17 +59,16 @@ export default function NativeAppLock() {
   return (
     <div role="dialog" aria-modal="true" aria-label={`Unlock Ivy with ${label}`} style={{
       position: 'fixed', inset: 0, zIndex: 1000,
-      background: '#0D0E0C', color: '#F3F3EE',
+      background: '#042b25', color: '#F3F3EE',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
       padding: 'calc(env(safe-area-inset-top, 0px) + 24px) 28px calc(env(safe-area-inset-bottom, 0px) + 28px)',
       fontFamily: 'var(--font-sans, Inter, -apple-system, sans-serif)', textAlign: 'center',
     }}>
       <div style={{
-        width: 84, height: 84, borderRadius: 24, background: '#CFFF50', color: '#0B0C08',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: '0 30px 80px -30px rgba(207,255,80,.5)',
+        width: 96, height: 96, borderRadius: 24, overflow: 'hidden', background: '#042b25',
+        boxShadow: '0 24px 60px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08)',
       }}>
-        <Icons.Check size={40} sw={3} />
+        <img src="/icon-512.png" alt="" draggable="false" style={{ width: '100%', height: '100%', display: 'block' }}/>
       </div>
       <div style={{ marginTop: 26, fontSize: 22, fontWeight: 600, letterSpacing: '-0.01em' }}>Ivy is locked</div>
       <div style={{ marginTop: 8, fontSize: 15, color: '#C9CAC3', maxWidth: '30ch' }}>
@@ -81,7 +80,7 @@ export default function NativeAppLock() {
           font: 'inherit', fontSize: 17, fontWeight: 700, opacity: busy ? 0.7 : 1,
         }}>{busy ? 'Checking…' : `Unlock with ${label}`}</button>
         <button type="button" onClick={usePassword} disabled={busy} style={{
-          background: 'transparent', color: '#F3F3EE', border: '1.5px solid #383D41', borderRadius: 14, padding: 15,
+          background: 'transparent', color: '#F3F3EE', border: '1.5px solid rgba(255,255,255,.28)', borderRadius: 14, padding: 15,
           font: 'inherit', fontSize: 16, fontWeight: 600,
         }}>Use password instead</button>
       </div>
