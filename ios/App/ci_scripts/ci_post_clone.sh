@@ -13,7 +13,7 @@
 #
 # Build-time env the web bundle needs (set these in the Xcode Cloud
 # workflow > Environment > Environment Variables):
-#   VITE_API_BASE_URL              https://joinivy.ai        (required)
+#   VITE_API_BASE_URL              https://www.joinivy.ai        (required)
 #   VITE_REVENUECAT_PUBLIC_KEY_IOS appl_...                   (required to
 #                                  submit for sale; build only warns)
 # scripts/check-ios-env.mjs enforces the first and warns on the second.

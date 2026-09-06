@@ -22,12 +22,20 @@ Mac - Xcode is required.
   below - keep them in sync if you change a value.
 - **RevenueCat account** (free up to $2.5K MRR). Create a project named
   "Ivy" with one iOS app entry.
+- **Use the canonical host, `https://www.joinivy.ai`, everywhere a machine
+  calls the API.** Vercel redirects the apex `joinivy.ai` to `www` with a
+  308. Browsers do not follow redirects on CORS preflights, so an app
+  built with `VITE_API_BASE_URL=https://joinivy.ai` fails every request
+  with WebKit's "Load failed" (found on the first device run). The same
+  applies to anything that POSTs to us without following redirects:
+  Stripe and RevenueCat webhook URLs must be `https://www.joinivy.ai/...`.
+  `npm run ios:sync` now probes the base URL and stops if it redirects.
 - **A `.env` file ON THE MAC** carrying the two build-time values below.
   This trips people up: the iOS bundle is produced by `npm run build`
   *on the Mac* and copied into the `.ipa` by `cap sync`, so these are
   baked in from the Mac's environment. Setting them in Vercel does
   nothing for the app - Vercel only builds the web app.
-  - `VITE_API_BASE_URL` (e.g. `https://joinivy.ai`) - the cross-origin
+  - `VITE_API_BASE_URL` (e.g. `https://www.joinivy.ai`) - the cross-origin
     API base. Without it every API call from the device resolves to
     `https://localhost/api/…` and fails, in a signed build you won't
     notice until TestFlight.
@@ -117,7 +125,7 @@ Mac - Xcode is required.
    the App-Specific Shared Secret + the in-app purchase key (`.p8`).
    Without these RC can't validate Apple receipts.
 6. **Webhook:**
-   - URL: `https://joinivy.ai/api/billing/revenuecat-webhook`
+   - URL: `https://www.joinivy.ai/api/billing/revenuecat-webhook`
    - Authorization header: paste the same string as
      `REVENUECAT_WEBHOOK_SECRET` above (RC sends it verbatim, we
      constant-time compare).

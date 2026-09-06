@@ -66,12 +66,35 @@ if (!base) {
     + '     Expected something like https://joinivy.ai (no path, no trailing slash).';
 }
 
+// A base URL that REDIRECTS is as broken as a missing one: the browser will
+// not follow a redirect on a CORS preflight, so every request from the
+// device fails with WebKit's "Load failed". This is exactly what an apex
+// domain that forwards to www (or vice versa) does. Probe it when we are
+// online; stay quiet when we are not.
+if (!fatal && base) {
+  try {
+    const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 4000);
+    const r = await fetch(base.replace(/\/+$/, '') + '/api/auth/me', { method: 'OPTIONS', redirect: 'manual', signal: ctrl.signal,
+      headers: { Origin: 'capacitor://localhost', 'Access-Control-Request-Method': 'GET' } });
+    clearTimeout(t);
+    if (r.status >= 300 && r.status < 400) {
+      const loc = r.headers.get('location') || '';
+      let canonical = '';
+      try { canonical = new URL(loc).origin; } catch { /* leave blank */ }
+      fatal = `VITE_API_BASE_URL (${base}) redirects (HTTP ${r.status}) to ${loc || 'another host'}.\n`
+        + '     Browsers refuse redirects on CORS preflights, so the app would fail\n'
+        + '     every request with "Load failed".'
+        + (canonical ? `\n     Use the destination instead:  VITE_API_BASE_URL=${canonical}` : '');
+    }
+  } catch { /* offline or blocked: cannot probe, do not block the build */ }
+}
+
 if (fatal && process.env.IVY_SKIP_IOS_ENV_CHECK !== '1') {
   console.error(`\n${RED}✖ iOS build stopped${OFF}\n`);
   console.error('   • ' + fatal + '\n');
   console.error(
     '   Fix: open the .env file in this folder and set:\n\n'
-    + '     VITE_API_BASE_URL=https://joinivy.ai\n\n'
+    + '     VITE_API_BASE_URL=https://www.joinivy.ai\n\n'
     + '   This is a build-time value baked into the app. It is NOT read\n'
     + '   from Vercel, which only builds the website.\n',
   );
