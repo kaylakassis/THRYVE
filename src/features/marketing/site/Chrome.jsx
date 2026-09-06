@@ -2,7 +2,7 @@
 // prototype). Every marketing page renders <SiteNav active=".."/> + content +
 // <SiteFooter/> + <StickyCta/>, and calls usePageMeta for title/meta/JSON-LD.
 // Design tokens mirror the app's dark theme exactly (src/styles/tokens.css
-// .dir-bold): #151515 ground, #1C201F surfaces, #4CBA7F accent, #012B24 deep
+// .dir-bold): #0E100F black ground, deep-green surfaces, #4CBA7F accent, #012B24
 // green for the footer. Base styles live in BASE_CSS, injected once per page via a
 // <style> tag so the pages stay pixel-faithful to the prototype.
 import React, { useEffect, useState } from 'react';
@@ -129,7 +129,7 @@ export function StickyCta() {
 // Scoped inside .site-root so the app's global.css and these styles can't
 // fight each other.
 export const BASE_CSS = `
-.site-root{--bg:#151515;--panel:#1C201F;--panel2:#232928;--border:#2D3533;--border2:#3D4745;--text:#ECF0F1;--muted:#C5CECC;--dim:#98A4A2;--lime:#4CBA7F;--ink:#012B24;--tint:#16382A;--deep:#012B24;--head:'Neue Haas Grotesk Display','Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;font-family:'Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+.site-root{--bg:#0E100F;--panel:#0F231E;--panel2:#163229;--border:#1E3D33;--border2:#2A5446;--text:#ECF0F1;--muted:#C5CECC;--dim:#9BB0A9;--lime:#4CBA7F;--ink:#012B24;--tint:#143C30;--deep:#012B24;--head:'Neue Haas Grotesk Display','Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;font-family:'Neue Haas Grotesk Text','Helvetica Neue',Inter,Helvetica,Arial,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
 .site-root *{margin:0;padding:0;box-sizing:border-box}
 .site-root a{color:inherit;text-decoration:none}
 .site-root .container{max-width:1120px;margin:0 auto;padding:0 24px}
@@ -139,7 +139,7 @@ export const BASE_CSS = `
 .site-root .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(76,186,127,.3)}
 .site-root .btn-ghost{border:1px solid var(--border2);color:var(--text);background:transparent}
 .site-root .btn-ghost:hover{border-color:var(--lime);color:var(--lime)}
-.site-root .site-nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(16px);background:rgba(21,21,21,.92);border-bottom:1px solid var(--border)}
+.site-root .site-nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(16px);background:rgba(14,16,15,.92);border-bottom:1px solid var(--border)}
 .site-root .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
 .site-root .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:19px;font-family:var(--head)}
 .site-root .logo-mark{width:28px;height:28px;border-radius:8px;display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(236,240,241,.12)}
@@ -157,11 +157,11 @@ export const BASE_CSS = `
 .site-root .center .section-sub{margin:0 auto}
 .site-root .section-sub{font-size:17px;color:var(--muted);max-width:620px}
 .site-root .menu-btn{display:none;background:none;border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:6px 12px;font-size:18px;cursor:pointer;line-height:1.2}
-.site-root .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(21,21,21,.98);border-bottom:1px solid var(--border);z-index:99;padding:8px 24px 18px}
+.site-root .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(14,16,15,.98);border-bottom:1px solid var(--border);z-index:99;padding:8px 24px 18px}
 .site-root .mobile-menu a{display:block;padding:13px 0;font-size:16px;color:var(--muted);border-bottom:1px solid var(--border)}
 .site-root .mobile-menu a:last-child{border-bottom:none}
 .site-root .mobile-menu.open{display:block}
-.site-root .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:98;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(21,21,21,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:none;transform:translateY(110%);transition:.3s}
+.site-root .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:98;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(14,16,15,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:none;transform:translateY(110%);transition:.3s}
 .site-root .sticky-cta.show{transform:none}
 .site-root .sticky-cta .btn{width:100%;justify-content:center}
 .site-root .sticky-cta .note{text-align:center;font-size:11.5px;color:var(--dim);margin-top:5px}

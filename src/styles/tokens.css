@@ -49,20 +49,23 @@
 }
 
 .dir-bold {
-  --page: #151515;
-  --surface: #1C201F;
-  --surface-2: #232928;
-  --border: #2D3533;
-  --border-strong: #3D4745;
+  /* Black foundation; the green is the detail. Surfaces, borders and
+     tints are all cut from the deep green (#012B24 / #004225) so cards,
+     inputs and chips read green on black instead of grey on grey. */
+  --page: #0E100F;
+  --surface: #0F231E;
+  --surface-2: #163229;
+  --border: #1E3D33;
+  --border-strong: #2A5446;
   --fg: #ECF0F1;
   --fg-2: #C5CECC;
-  --muted: #98A4A2;
-  --muted-2: #6B7674;
+  --muted: #9BB0A9;
+  --muted-2: #6F8880;
 
   --accent: #4CBA7F;
   --accent-ink: #012B24;
-  --accent-soft: #16382A;
-  --accent-tint: #1D4A37;
+  --accent-soft: #143C30;
+  --accent-tint: #1B4A3B;
 
   --ok: #6FE6A0;
   --warn: #F0B450;
