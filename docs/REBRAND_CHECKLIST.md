@@ -1,5 +1,15 @@
 # Manual rebrand checklist - what needs your hands
 
+> **Canonical host is `https://www.joinivy.ai`.** The apex `joinivy.ai`
+> answers every request with a 308 to `www`. Humans in a browser never
+> notice; machines do: Stripe and RevenueCat webhook deliveries, Square
+> webhook subscriptions, and the native app's `VITE_API_BASE_URL` must all
+> use `www`, or they fail on the redirect. Every URL below has been
+> written with `www` for that reason. If you change `APP_URL` /
+> `VITE_APP_URL` in Vercel to `www`, update the OAuth redirect URIs
+> registered with Stripe Connect, Square and PayPal to match exactly.
+
+
 The codebase rebrand is done. Everything below has to happen **outside the repo** - in dashboards, registrars, or DNS - because the code can't reach in and change them for you. Do these in roughly this order; the deploy step at the bottom depends on most of the rest being done first.
 
 ## 1. Domain & DNS (do this first - everything else depends on it)
@@ -39,14 +49,14 @@ In Vercel → Project → Settings → Environment Variables, for **each environ
 | `THRYVE_POSTAL_ADDRESS` | `IVY_POSTAL_ADDRESS` |
 
 - [ ] **Also update the values that contain the old domain or brand text**:
-  - `APP_URL` → `https://joinivy.ai`
-  - `VITE_APP_URL` → `https://joinivy.ai`
-  - `VITE_API_BASE_URL` (used by the iOS build) → `https://joinivy.ai`
+  - `APP_URL` → `https://www.joinivy.ai`
+  - `VITE_APP_URL` → `https://www.joinivy.ai`
+  - `VITE_API_BASE_URL` (used by the iOS build) → `https://www.joinivy.ai`
   - `EMAIL_FROM` → `Ivy <hello@joinivy.ai>`
   - `EMAIL_REPLY_TO` → `hello@joinivy.ai`
   - `VAPID_SUBJECT` → `mailto:hello@joinivy.ai`
   - `WEBSITE_CNAME_TARGET` → `cname.joinivy.ai` (if you've set it explicitly; otherwise the code default already points here)
-  - `SQUARE_REDIRECT_URI` → `https://joinivy.ai/api/finance/square-oauth-callback`
+  - `SQUARE_REDIRECT_URI` → `https://www.joinivy.ai/api/finance/square-oauth-callback`
 - [ ] **Generate `REVENUECAT_WEBHOOK_SECRET`** if you haven't yet (any long random string; used as the bearer token RC sends to our webhook). Set it in Vercel.
 - [ ] **Generate `VITE_REVENUECAT_PUBLIC_KEY_IOS`** - actually, you'll get this from RevenueCat in step 8. Just remember to come back and set it.
 
@@ -56,7 +66,7 @@ In Vercel → Project → Settings → Environment Variables, for **each environ
 
 Set **`DEV_LOGIN_SECRET`** (a long random string, **16+ chars** - e.g. `openssl rand -hex 24`) to enable a one-click, passwordless login into a dedicated **QA-only** account (`qa@joinivy.ai`) for visually testing app states. Off by default; with no secret set the endpoint 404s and is invisible.
 
-- Bookmark: `https://joinivy.ai/api/auth/dev-login?token=YOUR_SECRET`
+- Bookmark: `https://www.joinivy.ai/api/auth/dev-login?token=YOUR_SECRET`
 - Force a state with `&state=`:
   - `…&state=onboarding` - re-walk onboarding + walkthrough from the top (default for a fresh QA account)
   - `…&state=paywall` - jump straight to the hard paywall + priming screens
@@ -71,30 +81,30 @@ In Stripe Dashboard, account-wide:
 
 - [ ] **Account name** → "Ivy" (Stripe → Settings → Public details). Shows on receipts and the customer portal.
 - [ ] **Public business name / statement descriptor** → "IVY OS" (≤22 chars, appears on credit-card statements).
-- [ ] **Webhook endpoint URL** (Stripe → Developers → Webhooks → your "billing" endpoint) → `https://joinivy.ai/api/webhooks/billing`. If you change the URL Stripe issues a new signing secret - update `IVY_BILLING_WEBHOOK_SECRET` in Vercel to match.
-- [ ] **Stripe Connect** (Stripe → Settings → Connect → Branding) - update the "Connect platform" name, logo, and **redirect URL** to `https://joinivy.ai/api/finance/stripe-connect-callback`.
+- [ ] **Webhook endpoint URL** (Stripe → Developers → Webhooks → your "billing" endpoint) → `https://www.joinivy.ai/api/webhooks/billing`. If you change the URL Stripe issues a new signing secret - update `IVY_BILLING_WEBHOOK_SECRET` in Vercel to match.
+- [ ] **Stripe Connect** (Stripe → Settings → Connect → Branding) - update the "Connect platform" name, logo, and **redirect URL** to `https://www.joinivy.ai/api/finance/stripe-connect-callback`.
 
 ## 5. Square (per-merchant Connect)
 
 Square Developer Dashboard → your app:
 
 - [ ] **App name** → "Ivy".
-- [ ] **OAuth Redirect URL** → `https://joinivy.ai/api/finance/square-oauth-callback`. Match `SQUARE_REDIRECT_URI` in Vercel.
-- [ ] **Webhook subscription URL** → `https://joinivy.ai/api/webhooks/square/<workspaceId>` (the pattern handler routes by workspace).
+- [ ] **OAuth Redirect URL** → `https://www.joinivy.ai/api/finance/square-oauth-callback`. Match `SQUARE_REDIRECT_URI` in Vercel.
+- [ ] **Webhook subscription URL** → `https://www.joinivy.ai/api/webhooks/square/<workspaceId>` (the pattern handler routes by workspace).
 
 ## 6. PayPal (per-merchant Partner onboarding)
 
 PayPal Developer Dashboard → your app:
 
 - [ ] **App / partner display name** → "Ivy".
-- [ ] **Return URL after onboarding** → `https://joinivy.ai/api/finance/paypal-onboard-return`.
-- [ ] **Webhook URL** → `https://joinivy.ai/api/webhooks/paypal` (or the per-workspace path your handler uses).
+- [ ] **Return URL after onboarding** → `https://www.joinivy.ai/api/finance/paypal-onboard-return`.
+- [ ] **Webhook URL** → `https://www.joinivy.ai/api/webhooks/paypal` (or the per-workspace path your handler uses).
 
 ## 7. Twilio (your own sending number)
 
 Twilio Console:
 
-- [ ] **Voice / messaging webhook URLs** (if any) on your phone number → `https://joinivy.ai/api/webhooks/twilio/...`.
+- [ ] **Voice / messaging webhook URLs** (if any) on your phone number → `https://www.joinivy.ai/api/webhooks/twilio/...`.
 - [ ] **A2P 10DLC brand registration** (if you've done one) - update the brand name to "Ivy". Required for US SMS deliverability.
 
 ## 8. RevenueCat (iOS in-app subscriptions)
@@ -110,7 +120,7 @@ RevenueCat dashboard:
 - [ ] **Create the default offering** with a "Weekly" package linked to `ivyos_weekly` and an "Annual" package linked to `ivyos_yearly`. Order Annual first.
 - [ ] **Copy the iOS public SDK key** into `VITE_REVENUECAT_PUBLIC_KEY_IOS` in Vercel.
 - [ ] **Add a webhook**:
-  - URL: `https://joinivy.ai/api/billing/revenuecat-webhook`
+  - URL: `https://www.joinivy.ai/api/billing/revenuecat-webhook`
   - Authorization header: paste the same value you used for `REVENUECAT_WEBHOOK_SECRET`.
 - [ ] **App Store Connect integration**: generate the in-app purchase key (`.p8`) and App-Specific Shared Secret per RC's setup wizard.
 
@@ -126,9 +136,9 @@ RevenueCat dashboard:
 
 Google Cloud Console → APIs & Services → Credentials → your OAuth client:
 
-- [ ] **Authorized JavaScript origins** → `https://joinivy.ai`.
-- [ ] **Authorized redirect URIs** → `https://joinivy.ai/api/calendar/google/callback`.
-- [ ] **OAuth consent screen** → app name "Ivy", support email `support@joinivy.ai`, app logo, app domain, privacy + terms URLs (`https://joinivy.ai/privacy`, `https://joinivy.ai/terms`).
+- [ ] **Authorized JavaScript origins** → `https://www.joinivy.ai`.
+- [ ] **Authorized redirect URIs** → `https://www.joinivy.ai/api/calendar/google/callback`.
+- [ ] **OAuth consent screen** → app name "Ivy", support email `support@joinivy.ai`, app logo, app domain, privacy + terms URLs (`https://www.joinivy.ai/privacy`, `https://www.joinivy.ai/terms`).
 
 ## 11. Sentry
 
@@ -158,7 +168,7 @@ Once 1–8 are done:
 
 - [ ] **Trigger a Vercel production deploy** (push to main, or redeploy). The build picks up the renamed env vars.
 - [ ] **Verify after deploy**:
-  - `https://joinivy.ai` loads and shows the Ivy brand.
+  - `https://www.joinivy.ai` loads and shows the Ivy brand.
   - Log in works (note: **every existing user is logged out**, because the session cookie was renamed `thryve_session` → `ivy_session`. They just sign in again.)
   - A test signup arrives by email from `hello@joinivy.ai`.
   - Stripe Connect onboarding flow returns to the new redirect URL.
