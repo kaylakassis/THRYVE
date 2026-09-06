@@ -424,7 +424,7 @@ export function renderWinbackOffer({
     body: `<p>Hi ${fn},</p>
       <p>We saved your spot. Everything you built in <strong>${biz}</strong> — clients, history, settings, Ivy's knowledge of your business — is exactly where you left it.</p>
       <p>To make coming back easy, here's <strong>${percentOff}% off your first ${months} months</strong> when you reactivate:</p>
-      <div style="margin:18px 0;padding:14px 18px;border-radius:10px;background:#1D2022;border:1px solid #383D41;text-align:center;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:18px;letter-spacing:0.12em;font-weight:600;color:#CFFF50;">${escapeHtml(promoCode)}</div>
+      <div style="margin:18px 0;padding:14px 18px;border-radius:10px;background:#0B4136;border:1px solid #276353;text-align:center;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:18px;letter-spacing:0.12em;font-weight:600;color:#5CC98E;">${escapeHtml(promoCode)}</div>
       <p>Apply the code at checkout. Offer expires <strong>${fmtDate(expiresAt)}</strong>, and you can cancel anytime.</p>`,
     ctaText: 'Claim my offer →',
     ctaUrl: `${appUrl()}/account?tab=billing&winback=1`,

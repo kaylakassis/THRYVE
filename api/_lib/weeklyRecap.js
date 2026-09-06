@@ -50,10 +50,10 @@ function deltaSub(curr, prior, { money = false } = {}) {
 // copy short — every tile is one number + one label, with optional
 // secondary context underneath.
 function statTile(label, value, sub) {
-  return `<td style="padding:14px 16px;background:#1D2022;border:1px solid #262A2D;border-radius:10px;vertical-align:top;width:50%;">
-    <div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;color:#8A8D85;">${escapeHtml(label)}</div>
-    <div style="margin-top:6px;font-family:'Fraunces','Iowan Old Style',Georgia,serif;font-size:30px;letter-spacing:-0.02em;font-weight:500;color:#F3F3EE;line-height:1;">${escapeHtml(String(value))}</div>
-    ${sub ? `<div style="margin-top:4px;font-size:12px;color:#C9CAC3;line-height:1.4;">${escapeHtml(sub)}</div>` : ''}
+  return `<td style="padding:14px 16px;background:#0B4136;border:1px solid #164B3F;border-radius:10px;vertical-align:top;width:50%;">
+    <div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;color:#93A3A0;">${escapeHtml(label)}</div>
+    <div style="margin-top:6px;font-family:'Fraunces','Iowan Old Style',Georgia,serif;font-size:30px;letter-spacing:-0.02em;font-weight:500;color:#ECF0F1;line-height:1;">${escapeHtml(String(value))}</div>
+    ${sub ? `<div style="margin-top:4px;font-size:12px;color:#C5D1CE;line-height:1.4;">${escapeHtml(sub)}</div>` : ''}
   </td>`;
 }
 
@@ -93,25 +93,25 @@ export function renderWeeklyRecap({ firstName: fnRaw, businessName, range, stats
       : `${completed} session${completed === 1 ? '' : 's'} wrapped up at ${biz} last week.`;
 
   const overdueBlock = overdueCount > 0
-    ? `<p style="margin:18px 0 4px;font-size:14px;color:#F3F3EE;">
+    ? `<p style="margin:18px 0 4px;font-size:14px;color:#ECF0F1;">
         <strong style="color:#FFA040;">${overdueCount} invoice${overdueCount === 1 ? '' : 's'} overdue</strong> · ${fmtMoney(overdueTotal)} outstanding.
-        <a href="${appUrl()}/finance?filter=overdue" style="color:#CFFF50;text-decoration:underline;">Chase them →</a>
+        <a href="${appUrl()}/finance?filter=overdue" style="color:#5CC98E;text-decoration:underline;">Chase them →</a>
       </p>`
     : '';
 
   const upcomingBlock = upcoming > 0
-    ? `<p style="margin:18px 0 4px;font-size:14px;color:#F3F3EE;">
+    ? `<p style="margin:18px 0 4px;font-size:14px;color:#ECF0F1;">
         <strong>${upcoming} session${upcoming === 1 ? '' : 's'} coming up</strong> this week.
-        <a href="${appUrl()}/calendar" style="color:#CFFF50;text-decoration:underline;">Open the calendar →</a>
+        <a href="${appUrl()}/calendar" style="color:#5CC98E;text-decoration:underline;">Open the calendar →</a>
       </p>`
-    : `<p style="margin:18px 0 4px;font-size:14px;color:#C9CAC3;">
+    : `<p style="margin:18px 0 4px;font-size:14px;color:#C5D1CE;">
         No sessions on the books for the week ahead.
-        <a href="${appUrl()}/calendar?share=1" style="color:#CFFF50;text-decoration:underline;">Share your booking link →</a>
+        <a href="${appUrl()}/calendar?share=1" style="color:#5CC98E;text-decoration:underline;">Share your booking link →</a>
       </p>`;
 
   // A single standout day — a concrete high point to anchor the week's momentum.
   const bestDayBlock = bestDay && bestDay.amount > 0
-    ? `<p style="margin:18px 0 4px;font-size:14px;color:#F3F3EE;">
+    ? `<p style="margin:18px 0 4px;font-size:14px;color:#ECF0F1;">
         <strong>Your best day: ${escapeHtml(fmtDay(bestDay.date))}</strong> · ${fmtMoney(bestDay.amount)} came in.
       </p>`
     : '';
@@ -121,7 +121,7 @@ export function renderWeeklyRecap({ firstName: fnRaw, businessName, range, stats
     preheader: `${rangeLabel} · ${completed} session${completed === 1 ? '' : 's'}, ${fmtMoney(revenue)} earned, ${newClients} new client${newClients === 1 ? '' : 's'}.`,
     body: `<p>Hi ${fn},</p>
       <p>${headline}</p>
-      ${rangeLabel ? `<p style="font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#8A8D85;margin:18px 0 8px;">${escapeHtml(rangeLabel)}</p>` : ''}
+      ${rangeLabel ? `<p style="font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#93A3A0;margin:18px 0 8px;">${escapeHtml(rangeLabel)}</p>` : ''}
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;border-spacing:8px;margin:8px -8px;">
         <tr>
           ${statTile('Revenue',         fmtMoney(revenue),        revenueDelta || (completed ? `${completed} session${completed === 1 ? '' : 's'} completed` : null))}
@@ -136,19 +136,19 @@ export function renderWeeklyRecap({ firstName: fnRaw, businessName, range, stats
       ${bestDayBlock}
       ${upcomingBlock}
       ${quietWeek
-        ? `<p style="margin-top:24px;font-size:13.5px;line-height:1.6;color:#F3F3EE;">
+        ? `<p style="margin-top:24px;font-size:13.5px;line-height:1.6;color:#ECF0F1;">
             Two quick ways to turn the week around:
           </p>
-          <p style="margin:8px 0;font-size:13.5px;line-height:1.6;color:#C9CAC3;">
-            • <a href="${appUrl()}/calendar?share=1" style="color:#CFFF50;text-decoration:underline;">Share your booking link</a> — the fastest way to fill open slots.<br/>
-            • <a href="${appUrl()}/ivy?prompt=${encodeURIComponent('Plan my week and suggest who to reach out to')}" style="color:#CFFF50;text-decoration:underline;">Ask Ivy to plan your week</a> — she'll suggest who to follow up with.
+          <p style="margin:8px 0;font-size:13.5px;line-height:1.6;color:#C5D1CE;">
+            • <a href="${appUrl()}/calendar?share=1" style="color:#5CC98E;text-decoration:underline;">Share your booking link</a> — the fastest way to fill open slots.<br/>
+            • <a href="${appUrl()}/ivy?prompt=${encodeURIComponent('Plan my week and suggest who to reach out to')}" style="color:#5CC98E;text-decoration:underline;">Ask Ivy to plan your week</a> — she'll suggest who to follow up with.
           </p>`
-        : `<p style="margin-top:24px;font-size:13.5px;line-height:1.6;color:#C9CAC3;">
+        : `<p style="margin-top:24px;font-size:13.5px;line-height:1.6;color:#C5D1CE;">
             Open the dashboard for the full picture — Ivy can break any of this down further if you ask.
           </p>`}`,
     ctaText: 'Open dashboard',
     ctaUrl: `${appUrl()}/`,
-    footer: `You're getting this as the owner of ${biz}. Don't want the weekly recap? Adjust your email preferences in <a href="${appUrl()}/account?tab=notifications" style="color:#CFFF50;text-decoration:underline;">Account → Notifications</a>. — The Ivy Team`,
+    footer: `You're getting this as the owner of ${biz}. Don't want the weekly recap? Adjust your email preferences in <a href="${appUrl()}/account?tab=notifications" style="color:#5CC98E;text-decoration:underline;">Account → Notifications</a>. — The Ivy Team`,
   });
   return {
     subject: `Your week at ${businessName || 'your business'}${rangeLabel ? ` · ${rangeLabel}` : ''}`,

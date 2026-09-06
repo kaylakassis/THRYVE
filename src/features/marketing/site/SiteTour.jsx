@@ -14,9 +14,9 @@ const PAGE_CSS = `
 .site-root #bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55}
 .site-root .aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .site-root .aurora i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
-.site-root .aurora .a1{width:520px;height:520px;background:var(--glow,rgba(207,255,80,.14));top:-10%;left:-8%}
+.site-root .aurora .a1{width:520px;height:520px;background:var(--glow,rgba(92,201,142,.14));top:-10%;left:-8%}
 .site-root .aurora .a2{width:640px;height:640px;background:var(--glow2,rgba(34,211,238,.06));bottom:-20%;right:-10%}
-.site-root .aurora .a3{width:300px;height:300px;background:rgba(207,255,80,.08);top:55%;left:38%}
+.site-root .aurora .a3{width:300px;height:300px;background:rgba(92,201,142,.08);top:55%;left:38%}
 .site-root .gridlines{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;background-image:linear-gradient(rgba(243,243,238,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(243,243,238,.025) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,#000 30%,transparent 75%)}
 .site-root .bigtime{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--head);font-weight:700;font-size:clamp(110px,20vw,300px);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px rgba(243,243,238,.06);white-space:nowrap;pointer-events:none;z-index:0;user-select:none}
 /* ===== ONE-TIME REVEAL (IntersectionObserver adds .in) ===== */
@@ -28,17 +28,17 @@ const PAGE_CSS = `
 .site-root .strip{position:relative;padding:120px 24px;text-align:center;overflow:hidden}
 .site-root .strip .line{font-family:var(--head);font-weight:700;letter-spacing:-.035em;white-space:nowrap;max-width:100%}
 .site-root .strip .line.solid{font-size:clamp(30px,5.5vw,84px);color:var(--text)}
-.site-root .strip .line.ghost{font-size:clamp(14px,2.4vw,30px);font-weight:600;margin-top:22px;color:transparent;-webkit-text-stroke:1px rgba(207,255,80,.45)}
+.site-root .strip .line.ghost{font-size:clamp(14px,2.4vw,30px);font-weight:600;margin-top:22px;color:transparent;-webkit-text-stroke:1px rgba(92,201,142,.45)}
 .site-root .strip .line .hl{color:var(--lime)}
 /* opening shimmer */
-.site-root .t-open h1 .shimmer{background:linear-gradient(100deg,var(--lime) 30%,#eaffb0 50%,var(--lime) 70%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 3.2s linear infinite}
+.site-root .t-open h1 .shimmer{background:linear-gradient(100deg,var(--lime) 30%,#BFF0D6 50%,var(--lime) 70%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 3.2s linear infinite}
 @keyframes shim{to{background-position:-200% 0}}
 /* finale pulse */
-.site-root .t-final h2 .pulseglow{color:var(--lime);text-shadow:0 0 40px rgba(207,255,80,.35);animation:pulseg 2.6s ease-in-out infinite}
-@keyframes pulseg{50%{text-shadow:0 0 90px rgba(207,255,80,.7)}}
+.site-root .t-final h2 .pulseglow{color:var(--lime);text-shadow:0 0 40px rgba(92,201,142,.35);animation:pulseg 2.6s ease-in-out infinite}
+@keyframes pulseg{50%{text-shadow:0 0 90px rgba(92,201,142,.7)}}
 /* ===== TOUR OPENING ===== */
 .site-root .t-open{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:120px 24px 90px}
-.site-root .t-open .glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:1000px;height:700px;background:radial-gradient(ellipse,rgba(207,255,80,.14) 0%,transparent 60%);pointer-events:none}
+.site-root .t-open .glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:1000px;height:700px;background:radial-gradient(ellipse,rgba(92,201,142,.14) 0%,transparent 60%);pointer-events:none}
 .site-root .t-open h1{font-size:clamp(40px,7vw,92px);letter-spacing:-.03em;line-height:1.05}
 .site-root .t-open .sub{font-size:clamp(16px,2vw,21px);color:var(--muted);margin-top:20px;max-width:560px}
 .site-root .t-open .hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);animation:bob 2s infinite}
@@ -73,7 +73,7 @@ const PAGE_CSS = `
 .site-root .mk-row .who{color:var(--text);font-weight:500}
 .site-root .mk-row .who small{display:block;color:var(--dim);font-weight:400;font-size:11px}
 .site-root .chip{font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
-.site-root .chip.g{background:var(--tint);color:var(--lime);border:1px solid rgba(207,255,80,.3)}
+.site-root .chip.g{background:var(--tint);color:var(--lime);border:1px solid rgba(92,201,142,.3)}
 .site-root .chip.a{background:rgba(251,191,36,.08);color:#fcd34d;border:1px solid rgba(251,191,36,.25)}
 .site-root .chip.n{background:var(--panel2);color:var(--muted);border:1px solid var(--border2)}
 /* ---- booking mockup ---- */
@@ -83,7 +83,7 @@ const PAGE_CSS = `
 .site-root .mk-times{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
 .site-root .mk-time{border:1px solid var(--border2);border-radius:8px;text-align:center;padding:9px 0;font-size:12px;color:var(--muted)}
 .site-root .mk-time.sel{background:var(--lime);color:var(--ink);font-weight:700;border-color:var(--lime)}
-.site-root .mk-confirm{background:var(--tint);border:1px solid rgba(207,255,80,.35);border-radius:10px;padding:13px 16px;font-size:12.5px;color:var(--text)}
+.site-root .mk-confirm{background:var(--tint);border:1px solid rgba(92,201,142,.35);border-radius:10px;padding:13px 16px;font-size:12.5px;color:var(--text)}
 .site-root .mk-confirm b{color:var(--lime)}
 /* ---- invoice mockup ---- */
 .site-root .inv-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px;flex-wrap:wrap}
@@ -99,10 +99,10 @@ const PAGE_CSS = `
 .site-root .inv-note b{color:var(--lime)}
 /* ---- chat mockup ---- */
 .site-root .mk-msg{max-width:88%;padding:10px 14px;border-radius:12px;font-size:12.5px;line-height:1.5;margin-bottom:10px}
-.site-root .mk-msg.u{margin-left:auto;background:var(--tint);border:1px solid rgba(207,255,80,.3);border-bottom-right-radius:4px}
+.site-root .mk-msg.u{margin-left:auto;background:var(--tint);border:1px solid rgba(92,201,142,.3);border-bottom-right-radius:4px}
 .site-root .mk-msg.i{background:var(--panel2);border:1px solid var(--border);border-bottom-left-radius:4px;color:var(--muted)}
 .site-root .mk-msg.i b{color:var(--text)}
-.site-root .mk-act{display:flex;gap:8px;align-items:center;margin-top:8px;padding:8px 11px;background:rgba(207,255,80,.08);border:1px solid rgba(207,255,80,.25);border-radius:8px;font-size:11.5px;color:var(--lime)}
+.site-root .mk-act{display:flex;gap:8px;align-items:center;margin-top:8px;padding:8px 11px;background:rgba(92,201,142,.08);border:1px solid rgba(92,201,142,.25);border-radius:8px;font-size:11.5px;color:var(--lime)}
 /* ---- website mockup ---- */
 .site-root .web-hero{background:linear-gradient(160deg,var(--tint),var(--bg));border-radius:10px;padding:34px 24px;text-align:center;margin-bottom:12px;border:1px solid var(--border)}
 .site-root .web-hero h4{font-family:var(--head);font-size:21px;font-weight:600;margin-bottom:6px}
@@ -117,7 +117,7 @@ const PAGE_CSS = `
 .site-root .dot.on{background:var(--lime);transform:scale(1.35)}
 /* ===== FINALE ===== */
 .site-root .t-final{min-height:70vh;display:flex;align-items:center;text-align:center;position:relative;padding:120px 0}
-.site-root .t-final::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(207,255,80,.12) 0%,transparent 60%);pointer-events:none}
+.site-root .t-final::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(92,201,142,.12) 0%,transparent 60%);pointer-events:none}
 .site-root .t-final h2{font-size:clamp(36px,5.5vw,72px);letter-spacing:-.03em;line-height:1.08;margin-bottom:20px}
 .site-root .t-final p{font-size:18px;color:var(--muted);max-width:520px;margin:0 auto 34px}
 .site-root .t-final .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -290,7 +290,7 @@ export default function SiteTour() {
         const a = .18 + .22 * Math.abs(Math.sin(t / 1400 + p.tw)) * p.depth;
         cx.beginPath();
         cx.arc(p.x, p.y, p.r * p.depth, 0, Math.PI * 2);
-        cx.fillStyle = 'rgba(207,255,80,' + a.toFixed(3) + ')';
+        cx.fillStyle = 'rgba(92,201,142,' + a.toFixed(3) + ')';
         cx.fill();
       }
       rafId = requestAnimationFrame(draw);
@@ -321,7 +321,7 @@ export default function SiteTour() {
       </section>
 
       {/* SCENE 1: DASHBOARD */}
-      <section className="scene" id="s1" style={{ '--glow': 'rgba(207,255,80,.16)', '--glow2': 'rgba(34,211,238,.05)' }}>
+      <section className="scene" id="s1" style={{ '--glow': 'rgba(92,201,142,.16)', '--glow2': 'rgba(34,211,238,.05)' }}>
         <div className="aurora"><i className="a1"></i><i className="a2"></i><i className="a3"></i></div><div className="gridlines"></div><span className="bigtime">8:02</span>
         <div className="container inner">
           <div className="s-copy reveal">
@@ -350,7 +350,7 @@ export default function SiteTour() {
       </section>
 
       {/* SCENE 2: BOOKING */}
-      <section className="scene flip" id="s2" style={{ '--glow': 'rgba(160,255,120,.13)', '--glow2': 'rgba(207,255,80,.07)' }}>
+      <section className="scene flip" id="s2" style={{ '--glow': 'rgba(160,255,120,.13)', '--glow2': 'rgba(92,201,142,.07)' }}>
         <div className="aurora"><i className="a1"></i><i className="a2"></i><i className="a3"></i></div><div className="gridlines"></div><span className="bigtime">11:14</span>
         <div className="container inner">
           <div className="s-copy reveal">
@@ -386,7 +386,7 @@ export default function SiteTour() {
       </section>
 
       {/* SCENE 3: INVOICE */}
-      <section className="scene" id="s3" style={{ '--glow': 'rgba(251,191,36,.10)', '--glow2': 'rgba(207,255,80,.08)' }}>
+      <section className="scene" id="s3" style={{ '--glow': 'rgba(251,191,36,.10)', '--glow2': 'rgba(92,201,142,.08)' }}>
         <div className="aurora"><i className="a1"></i><i className="a2"></i><i className="a3"></i></div><div className="gridlines"></div><span className="bigtime">4:45</span>
         <div className="container inner">
           <div className="s-copy reveal">
@@ -413,7 +413,7 @@ export default function SiteTour() {
       </section>
 
       {/* SCENE 4: IVY AI */}
-      <section className="scene flip" id="s4" style={{ '--glow': 'rgba(207,255,80,.18)', '--glow2': 'rgba(120,200,255,.06)' }}>
+      <section className="scene flip" id="s4" style={{ '--glow': 'rgba(92,201,142,.18)', '--glow2': 'rgba(120,200,255,.06)' }}>
         <div className="aurora"><i className="a1"></i><i className="a2"></i><i className="a3"></i></div><div className="gridlines"></div><span className="bigtime">9:20</span>
         <div className="container inner">
           <div className="s-copy reveal">
@@ -441,7 +441,7 @@ export default function SiteTour() {
       </section>
 
       {/* SCENE 5: WEBSITE */}
-      <section className="scene" id="s5" style={{ '--glow': 'rgba(34,211,238,.08)', '--glow2': 'rgba(207,255,80,.10)' }}>
+      <section className="scene" id="s5" style={{ '--glow': 'rgba(34,211,238,.08)', '--glow2': 'rgba(92,201,142,.10)' }}>
         <div className="aurora"><i className="a1"></i><i className="a2"></i><i className="a3"></i></div><div className="gridlines"></div><span className="bigtime">DAY 1</span>
         <div className="container inner">
           <div className="s-copy reveal">

@@ -40,7 +40,7 @@ function fmtDateShort(d) {
 // Mirrors what fetchBranding(workspaceId) returns at send time.
 export const SAMPLE_BRANDING = {
   businessName: 'Market Theory Studio',
-  accentColor:  '#CFFF50',
+  accentColor:  '#5CC98E',
   logoUrl:      null,
   emailSignature: '— The Market Theory Team',
   replyTo:      'hello@example.com',
@@ -60,7 +60,7 @@ export function renderVerifyEmail({ firstName: fnRaw, link }) {
       preheader: 'Tap the button to verify your account.',
       body: `<p>Hi ${fn},</p>
         <p>Welcome to Ivy! Tap the button below to verify your email and finish setting up your account.</p>
-        <p style="color:#8A8D85;font-size:12.5px;">This link expires in 24 hours. If you didn't sign up for Ivy, you can ignore this email.</p>`,
+        <p style="color:#93A3A0;font-size:12.5px;">This link expires in 24 hours. If you didn't sign up for Ivy, you can ignore this email.</p>`,
       ctaText: 'Verify my email',
       ctaUrl: url,
       footer: `Trouble with the button? Paste this link into your browser. — The Ivy Team`,
@@ -78,7 +78,7 @@ export function renderPasswordReset({ firstName: fnRaw, link }) {
       preheader: 'Tap the button to choose a new password.',
       body: `<p>Hi ${fn},</p>
         <p>Someone (hopefully you) requested a password reset on your Ivy account. Tap the button to choose a new password.</p>
-        <p style="color:#8A8D85;font-size:12.5px;">This link expires in 1 hour. If you didn't request a reset, you can safely ignore this email — your password stays the same.</p>`,
+        <p style="color:#93A3A0;font-size:12.5px;">This link expires in 1 hour. If you didn't request a reset, you can safely ignore this email — your password stays the same.</p>`,
       ctaText: 'Reset my password',
       ctaUrl: url,
       footer: `For your security, links can only be used once. — The Ivy Team`,
@@ -107,7 +107,7 @@ export function renderAccountDeletionRequest({ firstName: fnRaw, finalDeleteDate
         <p>(Businesses you were a client of keep their own records of your transactions with them, as they're required to.)</p>`,
       ctaText: 'Keep my account →',
       ctaUrl: url,
-      footer: `Thanks for trying Ivy. Questions? <a href="mailto:${escapeHtml(supportEmail)}" style="color:#CFFF50;text-decoration:underline;">${escapeHtml(supportEmail)}</a>. — The Ivy Team`,
+      footer: `Thanks for trying Ivy. Questions? <a href="mailto:${escapeHtml(supportEmail)}" style="color:#5CC98E;text-decoration:underline;">${escapeHtml(supportEmail)}</a>. — The Ivy Team`,
     }),
   };
 }
@@ -134,11 +134,11 @@ export function renderDataExportReady({ firstName: fnRaw, filename, sizeMb, atta
     ? `<p>Hi ${fn},</p>
        <p>Your data export for your Ivy account is ready — but it turned out to be a bit large to email safely (about <strong>${sizeMb || '24.5'} MB</strong>), so we couldn't attach it here.</p>
        <p>You can download the complete file any time from <strong>Account → Your data → Download my data</strong>. It includes your clients, bookings, financials, and account records.</p>
-       <p>Didn't request this? Email <a href="mailto:${escapeHtml(supportEmail)}" style="color:#CFFF50;text-decoration:underline;">${escapeHtml(supportEmail)}</a> right away.</p>`
+       <p>Didn't request this? Email <a href="mailto:${escapeHtml(supportEmail)}" style="color:#5CC98E;text-decoration:underline;">${escapeHtml(supportEmail)}</a> right away.</p>`
     : `<p>Hi ${fn},</p>
        <p>Your data export for your Ivy account is ready. It's attached to this email as <strong>${escapeHtml(filename || 'ivy-export-2026-06-22.json')}</strong> (${sizeMb || '3.2'} MB of JSON) and includes your clients, bookings, financials, and account records.</p>
        <p>For your security, keep this file somewhere safe — it's a complete copy of your data.</p>
-       <p>Didn't request this? Email <a href="mailto:${escapeHtml(supportEmail)}" style="color:#CFFF50;text-decoration:underline;">${escapeHtml(supportEmail)}</a> right away.</p>`;
+       <p>Didn't request this? Email <a href="mailto:${escapeHtml(supportEmail)}" style="color:#5CC98E;text-decoration:underline;">${escapeHtml(supportEmail)}</a> right away.</p>`;
   return {
     subject: 'Your Ivy data export is ready',
     html: emailShell({
@@ -205,11 +205,11 @@ export const renderAdminInviteBusinessActive = (args) => renderAdminInvite({ ...
 function bookingDetailTable({ serviceName, dateLabel, timeLabel, locationAddress, notes }) {
   return `<table role="presentation" cellpadding="0" cellspacing="0"
     style="margin:18px 0;border-collapse:collapse;font-size:14px;line-height:1.55;">
-    <tr><td style="padding:6px 16px 6px 0;color:#8A8D85;">Service</td><td style="padding:6px 0;font-weight:600;color:#F3F3EE;">${escapeHtml(serviceName)}</td></tr>
-    <tr><td style="padding:6px 16px 6px 0;color:#8A8D85;">Date</td><td style="padding:6px 0;font-weight:600;color:#F3F3EE;">${escapeHtml(dateLabel)}</td></tr>
-    <tr><td style="padding:6px 16px 6px 0;color:#8A8D85;">Time</td><td style="padding:6px 0;font-weight:600;color:#F3F3EE;">${escapeHtml(timeLabel)}</td></tr>
-    ${locationAddress ? `<tr><td style="padding:6px 16px 6px 0;color:#8A8D85;vertical-align:top;">Where</td><td style="padding:6px 0;color:#F3F3EE;">${escapeHtml(locationAddress)}</td></tr>` : ''}
-    ${notes ? `<tr><td style="padding:6px 16px 6px 0;color:#8A8D85;vertical-align:top;">Note</td><td style="padding:6px 0;color:#F3F3EE;">${escapeHtml(notes)}</td></tr>` : ''}
+    <tr><td style="padding:6px 16px 6px 0;color:#93A3A0;">Service</td><td style="padding:6px 0;font-weight:600;color:#ECF0F1;">${escapeHtml(serviceName)}</td></tr>
+    <tr><td style="padding:6px 16px 6px 0;color:#93A3A0;">Date</td><td style="padding:6px 0;font-weight:600;color:#ECF0F1;">${escapeHtml(dateLabel)}</td></tr>
+    <tr><td style="padding:6px 16px 6px 0;color:#93A3A0;">Time</td><td style="padding:6px 0;font-weight:600;color:#ECF0F1;">${escapeHtml(timeLabel)}</td></tr>
+    ${locationAddress ? `<tr><td style="padding:6px 16px 6px 0;color:#93A3A0;vertical-align:top;">Where</td><td style="padding:6px 0;color:#ECF0F1;">${escapeHtml(locationAddress)}</td></tr>` : ''}
+    ${notes ? `<tr><td style="padding:6px 16px 6px 0;color:#93A3A0;vertical-align:top;">Note</td><td style="padding:6px 0;color:#ECF0F1;">${escapeHtml(notes)}</td></tr>` : ''}
   </table>`;
 }
 
@@ -281,10 +281,10 @@ export function renderBookingCancellationClient({
 
 function invoiceLineItemsTable(items) {
   const rows = (items || []).map((i) => `
-    <tr style="border-top:1px solid #262A2D;">
-      <td style="padding:8px 12px;color:#F3F3EE;font-size:13.5px;">${escapeHtml(i.description || i.name || '')}</td>
-      <td style="padding:8px 12px;color:#C9CAC3;font-size:13.5px;text-align:right;white-space:nowrap;">${i.quantity || 1} × ${fmtMoney(i.rate || i.price || 0)}</td>
-      <td style="padding:8px 12px;color:#F3F3EE;font-size:13.5px;font-weight:600;text-align:right;white-space:nowrap;">${fmtMoney((i.quantity || 1) * (i.rate || i.price || 0))}</td>
+    <tr style="border-top:1px solid #164B3F;">
+      <td style="padding:8px 12px;color:#ECF0F1;font-size:13.5px;">${escapeHtml(i.description || i.name || '')}</td>
+      <td style="padding:8px 12px;color:#C5D1CE;font-size:13.5px;text-align:right;white-space:nowrap;">${i.quantity || 1} × ${fmtMoney(i.rate || i.price || 0)}</td>
+      <td style="padding:8px 12px;color:#ECF0F1;font-size:13.5px;font-weight:600;text-align:right;white-space:nowrap;">${fmtMoney((i.quantity || 1) * (i.rate || i.price || 0))}</td>
     </tr>`).join('');
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:18px 0;border-collapse:collapse;">${rows}</table>`;
 }
@@ -403,7 +403,7 @@ export function renderReviewRequest({ clientName, businessName, serviceName, bra
   const svc = escapeHtml(serviceName || 'session');
   const stars = (n) => Array.from({ length: 5 }, (_, i) => `
     <a href="${appUrl()}/review/PREVIEW_TOKEN_xxxxxxxx?rating=${i + 1}"
-       style="display:inline-block;padding:8px 12px;font-size:24px;color:${i < n ? '#CFFF50' : '#5F625C'};text-decoration:none;">★</a>`).join('');
+       style="display:inline-block;padding:8px 12px;font-size:24px;color:${i < n ? '#5CC98E' : '#7F8C8D'};text-decoration:none;">★</a>`).join('');
   return {
     subject: `How was your ${svc}?`,
     html: emailShell({
@@ -411,7 +411,7 @@ export function renderReviewRequest({ clientName, businessName, serviceName, bra
       body: `<p>${greeting}</p>
         <p>Thanks for visiting <strong>${biz}</strong>. Would you mind sharing how it went? Tap a rating below.</p>
         <div style="text-align:center;margin:18px 0;">${stars(0)}</div>
-        <p style="color:#8A8D85;font-size:12.5px;">It takes about 10 seconds. Honest feedback helps the business improve and helps other clients pick the right service.</p>`,
+        <p style="color:#93A3A0;font-size:12.5px;">It takes about 10 seconds. Honest feedback helps the business improve and helps other clients pick the right service.</p>`,
       footer: `Reply if you'd rather share feedback privately. — ${biz}`,
       branding: branding || SAMPLE_BRANDING,
     }),

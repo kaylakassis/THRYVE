@@ -110,21 +110,21 @@ async function notifyAdminOfBug({ id, severity, title, body, url, reporterEmail,
   const sevLabel = severity.toUpperCase();
   const sevColor = severity === 'critical' ? '#FF5C5C'
     : severity === 'major' ? '#FFA040'
-    : severity === 'minor' ? '#CFFF50' : '#8A8D85';
+    : severity === 'minor' ? '#5CC98E' : '#93A3A0';
   const detailRows = [
     ['Severity',    `<span style="color:${sevColor};font-weight:600;">${escapeHtml(sevLabel)}</span>`],
     ['Reporter',    escapeHtml(reporterEmail || '(unknown)')],
-    ['Page',        url ? `<a href="${escapeHtml(url)}" style="color:#CFFF50;text-decoration:underline;">${escapeHtml(url)}</a>` : '(not provided)'],
+    ['Page',        url ? `<a href="${escapeHtml(url)}" style="color:#5CC98E;text-decoration:underline;">${escapeHtml(url)}</a>` : '(not provided)'],
     ['Viewport',    escapeHtml(viewport || '(not provided)')],
     ['App version', escapeHtml(appVersion || '(not provided)')],
     ['User agent',  escapeHtml((userAgent || '').slice(0, 200)) || '(not provided)'],
-  ].map(([k, v]) => `<tr><td style="color:#8A8D85;padding:4px 16px 4px 0;vertical-align:top;white-space:nowrap;">${k}</td><td style="color:#F3F3EE;padding:4px 0;">${v}</td></tr>`).join('');
+  ].map(([k, v]) => `<tr><td style="color:#93A3A0;padding:4px 16px 4px 0;vertical-align:top;white-space:nowrap;">${k}</td><td style="color:#ECF0F1;padding:4px 0;">${v}</td></tr>`).join('');
 
   const html = emailShell({
     heading: `New bug report: ${title}`,
     preheader: `${sevLabel} severity — from ${reporterEmail || 'an Ivy user'}.`,
     body: `<p>A new bug report just came in.</p>
-      ${body ? `<blockquote style="margin:14px 0;padding:12px 16px;border-left:3px solid #CFFF50;background:#1D2022;border-radius:6px;font-size:14px;line-height:1.55;color:#F3F3EE;white-space:pre-wrap;">${escapeHtml(body)}</blockquote>` : '<p style="color:#8A8D85;">(no description provided)</p>'}
+      ${body ? `<blockquote style="margin:14px 0;padding:12px 16px;border-left:3px solid #5CC98E;background:#0B4136;border-radius:6px;font-size:14px;line-height:1.55;color:#ECF0F1;white-space:pre-wrap;">${escapeHtml(body)}</blockquote>` : '<p style="color:#93A3A0;">(no description provided)</p>'}
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:18px 0 6px;font-size:13px;line-height:1.7;">${detailRows}</table>`,
     ctaText: 'Open in admin',
     ctaUrl: `${appUrl()}/admin?tab=bugs`,

@@ -24,7 +24,7 @@ const PAGE_CSS = `
 .site-root h1{font-size:clamp(36px,4.8vw,56px);letter-spacing:-.025em;line-height:1.1;margin-bottom:18px}
 .site-root h2{font-size:clamp(28px,3.4vw,38px);letter-spacing:-.02em;margin-bottom:14px}
 .site-root .page-head{padding:160px 0 24px;position:relative;text-align:center}
-.site-root .page-head::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:550px;background:radial-gradient(ellipse,rgba(207,255,80,.09) 0%,transparent 65%);pointer-events:none}
+.site-root .page-head::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:550px;background:radial-gradient(ellipse,rgba(92,201,142,.09) 0%,transparent 65%);pointer-events:none}
 .site-root .lede{font-size:18px;color:var(--muted);max-width:640px;margin:0 auto}
 .site-root section{padding:64px 0}
 /* TRIAL FLOW PILLS */
@@ -54,13 +54,13 @@ const PAGE_CSS = `
 .site-root .calc{max-width:760px;margin:44px auto 0;background:var(--panel2);border:1px solid var(--border2);border-radius:18px;padding:36px;text-align:left}
 .site-root .calc label{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin:22px 0 8px;font-weight:500}
 .site-root .calc label output{color:var(--lime);font-weight:600;font-family:var(--head)}
-.site-root input[type=range]{width:100%;accent-color:#CFFF50;cursor:pointer}
+.site-root input[type=range]{width:100%;accent-color:#5CC98E;cursor:pointer}
 .site-root .calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
 .site-root .calc-cell{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:18px}
 .site-root .calc-cell .k{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
 .site-root .calc-cell .v{font-family:var(--head);font-size:24px;font-weight:600;color:var(--lime);margin-top:4px}
 .site-root .calc-cell .d{font-size:12px;color:var(--dim);margin-top:2px}
-.site-root .calc-total{margin-top:16px;background:var(--tint);border:1px solid rgba(207,255,80,.3);border-radius:12px;padding:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.site-root .calc-total{margin-top:16px;background:var(--tint);border:1px solid rgba(92,201,142,.3);border-radius:12px;padding:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .site-root .calc-total .k{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .site-root .calc-total .v{font-family:var(--head);font-size:30px;font-weight:600;color:var(--lime)}
 .site-root .calc .fine{font-size:12.5px;color:var(--dim);margin-top:18px}
@@ -83,7 +83,7 @@ const PAGE_CSS = `
 /* FAQ */
 .site-root .faq{max-width:720px;margin:44px auto 0;text-align:left}
 .site-root details{background:var(--panel);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden}
-.site-root details[open]{border-color:rgba(207,255,80,.35)}
+.site-root details[open]{border-color:rgba(92,201,142,.35)}
 .site-root summary{padding:19px 24px;font-weight:600;font-size:15.5px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
 .site-root summary::-webkit-details-marker{display:none}
 .site-root summary::after{content:'+';color:var(--lime);font-size:20px;font-weight:400;transition:.2s}

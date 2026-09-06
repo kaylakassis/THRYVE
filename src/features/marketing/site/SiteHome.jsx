@@ -137,7 +137,7 @@ const PAGE_CSS = `
 .site-root h2{font-size:clamp(30px,3.8vw,42px);letter-spacing:-.02em;line-height:1.15;margin-bottom:16px}
 /* HERO */
 .site-root .hero{padding:164px 0 90px;position:relative}
-.site-root .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(207,255,80,.09) 0%,transparent 65%);pointer-events:none}
+.site-root .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(92,201,142,.09) 0%,transparent 65%);pointer-events:none}
 .site-root .hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;position:relative}
 .site-root .hero-sub{font-size:18px;color:var(--muted);max-width:520px;margin-bottom:32px}
 .site-root .hero-sub strong{color:var(--text);font-weight:600}
@@ -152,10 +152,10 @@ const PAGE_CSS = `
 .site-root .chat-body{padding:20px;display:flex;flex-direction:column;gap:14px;min-height:340px}
 .site-root .msg{max-width:85%;padding:11px 15px;border-radius:12px;font-size:13.5px;line-height:1.55;opacity:0;transform:translateY(8px);animation:msgIn .45s forwards}
 @keyframes msgIn{to{opacity:1;transform:none}}
-.site-root .msg.user{align-self:flex-end;background:var(--tint);border:1px solid rgba(207,255,80,.3);border-bottom-right-radius:4px}
+.site-root .msg.user{align-self:flex-end;background:var(--tint);border:1px solid rgba(92,201,142,.3);border-bottom-right-radius:4px}
 .site-root .msg.ivy{align-self:flex-start;background:var(--panel2);border:1px solid var(--border);border-bottom-left-radius:4px;color:var(--muted)}
 .site-root .msg.ivy b{color:var(--text);font-weight:600}
-.site-root .msg .action{display:flex;align-items:center;gap:8px;margin-top:10px;padding:9px 12px;background:rgba(207,255,80,.08);border:1px solid rgba(207,255,80,.25);border-radius:8px;font-size:12.5px;color:var(--lime)}
+.site-root .msg .action{display:flex;align-items:center;gap:8px;margin-top:10px;padding:9px 12px;background:rgba(92,201,142,.08);border:1px solid rgba(92,201,142,.25);border-radius:8px;font-size:12.5px;color:var(--lime)}
 .site-root .chat-input{display:flex;gap:10px;padding:14px 18px;border-top:1px solid var(--border);background:var(--panel2)}
 .site-root .chat-input .field{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--dim)}
 .site-root .chat-input .send{width:38px;height:38px;border-radius:8px;background:var(--lime);display:flex;align-items:center;justify-content:center;color:var(--ink);font-weight:700}
@@ -181,8 +181,8 @@ const PAGE_CSS = `
 /* FEATURES */
 .site-root .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px;text-align:left}
 .site-root .feat{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:28px;transition:.25s}
-.site-root .feat:hover{border-color:rgba(207,255,80,.4);background:var(--panel2)}
-.site-root .feat .icon{width:42px;height:42px;border-radius:10px;background:var(--tint);border:1px solid rgba(207,255,80,.25);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:18px}
+.site-root .feat:hover{border-color:rgba(92,201,142,.4);background:var(--panel2)}
+.site-root .feat .icon{width:42px;height:42px;border-radius:10px;background:var(--tint);border:1px solid rgba(92,201,142,.25);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:18px}
 .site-root .feat h3{font-size:17px;margin-bottom:8px;font-weight:600}
 .site-root .feat p{font-size:14px;color:var(--muted)}
 /* IVY SECTION */
@@ -223,7 +223,7 @@ const PAGE_CSS = `
 .site-root .price-card .fine{font-size:12.5px;color:rgba(11,12,8,.65);margin-top:12px;text-align:center}
 /* CTA */
 .site-root .cta-final{text-align:center;position:relative}
-.site-root .cta-final::before{content:'';position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(207,255,80,.08) 0%,transparent 65%);pointer-events:none}
+.site-root .cta-final::before{content:'';position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(92,201,142,.08) 0%,transparent 65%);pointer-events:none}
 /* VERTICALS LINE */
 .site-root .verticals{font-size:13.5px;color:var(--dim);margin-top:18px}
 .site-root .verticals b{color:var(--muted);font-weight:500}
@@ -243,7 +243,7 @@ const PAGE_CSS = `
 .site-root .founder .quote{font-family:var(--head);font-size:20px;line-height:1.5;color:var(--text);margin-bottom:22px;letter-spacing:-.01em}
 .site-root .founder .quote .hl{color:var(--lime)}
 .site-root .founder .who{display:flex;align-items:center;gap:14px}
-.site-root .founder .who .av{width:44px;height:44px;border-radius:50%;background:var(--tint);border:1px solid rgba(207,255,80,.35);display:flex;align-items:center;justify-content:center;color:var(--lime);font-weight:700;font-family:var(--head)}
+.site-root .founder .who .av{width:44px;height:44px;border-radius:50%;background:var(--tint);border:1px solid rgba(92,201,142,.35);display:flex;align-items:center;justify-content:center;color:var(--lime);font-weight:700;font-family:var(--head)}
 .site-root .founder .who b{display:block;font-size:15px}
 .site-root .founder .who span{font-size:13px;color:var(--dim)}
 /* PERSONA PICKER */
@@ -256,7 +256,7 @@ const PAGE_CSS = `
 .site-root .tour-prompts{display:flex;flex-direction:column;gap:10px}
 .site-root .tour-prompt{background:var(--panel);border:1px solid var(--border2);color:var(--text);font-family:Inter,sans-serif;font-size:14.5px;font-weight:500;padding:15px 18px;border-radius:12px;cursor:pointer;text-align:left;transition:.2s;display:flex;gap:10px;align-items:center}
 .site-root .tour-prompt:hover{border-color:var(--lime)}
-.site-root .tour-prompt.used{border-color:rgba(207,255,80,.4);color:var(--dim)}
+.site-root .tour-prompt.used{border-color:rgba(92,201,142,.4);color:var(--dim)}
 .site-root .tour-prompt .arrow{margin-left:auto;color:var(--lime)}
 .site-root .tour-note{font-size:12.5px;color:var(--dim);margin-top:14px}
 .site-root .tour-chat{background:var(--panel);border:1px solid var(--border2);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4)}

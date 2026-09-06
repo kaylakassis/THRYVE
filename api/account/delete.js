@@ -148,7 +148,7 @@ export default async function handler(req, res) {
         }
         const recoveryLine = recoverUrl
           ? `<p><strong>Changed your mind?</strong> One-click restore using the button below — works any time before ${escapeText(finalDelete)}.</p>`
-          : `<p><strong>Changed your mind?</strong> Email <a href="mailto:${escapeText(supportEmail)}" style="color:#CFFF50;text-decoration:underline;">${escapeText(supportEmail)}</a> before ${escapeText(finalDelete)} and we'll restore your account.</p>`;
+          : `<p><strong>Changed your mind?</strong> Email <a href="mailto:${escapeText(supportEmail)}" style="color:#5CC98E;text-decoration:underline;">${escapeText(supportEmail)}</a> before ${escapeText(finalDelete)} and we'll restore your account.</p>`;
         await sendEmail({
           to: userEmail,
           subject: 'Your Ivy account deletion request',

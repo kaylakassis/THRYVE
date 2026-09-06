@@ -80,11 +80,11 @@ async function emailCopy(req, res) {
       ? `<p>Hi ${fn},</p>
          <p>Your data export for your Ivy account is ready — but it turned out to be a bit large to email safely (about <strong>${sizeMb} MB</strong>), so we couldn't attach it here.</p>
          <p>You can download the complete file any time from <strong>Account → Your data → Download my data</strong>. It includes your clients, bookings, financials, and account records.</p>
-         <p>Didn't request this? Email <a href="mailto:${escapeHtml(supportEmail)}" style="color:#CFFF50;text-decoration:underline;">${escapeHtml(supportEmail)}</a> right away.</p>`
+         <p>Didn't request this? Email <a href="mailto:${escapeHtml(supportEmail)}" style="color:#5CC98E;text-decoration:underline;">${escapeHtml(supportEmail)}</a> right away.</p>`
       : `<p>Hi ${fn},</p>
          <p>Your data export for your Ivy account is ready. It's attached to this email as <strong>${escapeHtml(filename)}</strong> (${sizeMb} MB of JSON) and includes your clients, bookings, financials, and account records.</p>
          <p>For your security, keep this file somewhere safe — it's a complete copy of your data.</p>
-         <p>Didn't request this? Email <a href="mailto:${escapeHtml(supportEmail)}" style="color:#CFFF50;text-decoration:underline;">${escapeHtml(supportEmail)}</a> right away.</p>`;
+         <p>Didn't request this? Email <a href="mailto:${escapeHtml(supportEmail)}" style="color:#5CC98E;text-decoration:underline;">${escapeHtml(supportEmail)}</a> right away.</p>`;
 
     const html = emailShell({
       heading: 'Your data export is ready',

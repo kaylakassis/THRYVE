@@ -204,10 +204,10 @@ function injectUnsubFooter(html, unsubscribeUrl) {
   if (!html || typeof html !== 'string') return html;
   if (html.includes(UNSUB_MARKER)) return html;
   const prefsUrl = `${process.env.APP_URL || 'https://joinivy.ai'}/account?tab=notifications`;
-  const block = `<div ${UNSUB_MARKER} style="margin:18px auto 0;max-width:600px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',Helvetica,Arial,sans-serif;font-size:11px;color:#8A8D85;line-height:1.5;">
-    <a href="${unsubscribeUrl}" style="color:#8A8D85;text-decoration:underline;">Unsubscribe</a>
+  const block = `<div ${UNSUB_MARKER} style="margin:18px auto 0;max-width:600px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',Helvetica,Arial,sans-serif;font-size:11px;color:#93A3A0;line-height:1.5;">
+    <a href="${unsubscribeUrl}" style="color:#93A3A0;text-decoration:underline;">Unsubscribe</a>
     &nbsp;·&nbsp;
-    <a href="${prefsUrl}" style="color:#8A8D85;text-decoration:underline;">Manage email preferences</a>
+    <a href="${prefsUrl}" style="color:#93A3A0;text-decoration:underline;">Manage email preferences</a>
   </div>`;
   if (/<\/body\s*>/i.test(html)) return html.replace(/<\/body\s*>/i, `${block}</body>`);
   return html + block;
@@ -241,23 +241,23 @@ function injectUnsubFooter(html, unsubscribeUrl) {
 //
 // Optional `branding` ({ businessName, logoUrl, accentColor, emailSignature })
 // applies the workspace owner's chosen presentation. accentColor (if
-// set) overrides the default lime; we compute a contrasting ink color
+// set) overrides the default green; we compute a contrasting ink color
 // for button text via relative-luminance.
 export function emailShell({ heading, body, ctaText, ctaUrl, footer, branding, preheader, unsubscribeUrl }) {
-  // Brand tokens - mirror tokens.css ".dir-bold" exactly. Hard-coded
+  // Brand tokens - the Ivy green palette the website uses (site/Chrome.jsx). Hard-coded
   // because email clients can't read CSS variables.
   const C = {
-    page:         '#0D0E0C',
-    surface:      '#16181A',
-    surface2:     '#1D2022',
-    border:       '#262A2D',
-    borderStrong: '#383D41',
-    fg:           '#F3F3EE',
-    fg2:          '#C9CAC3',
-    muted:        '#8A8D85',
-    muted2:       '#5F625C',
+    page:         '#012B24',
+    surface:      '#04352D',
+    surface2:     '#0B4136',
+    border:       '#164B3F',
+    borderStrong: '#276353',
+    fg:           '#ECF0F1',
+    fg2:          '#C5D1CE',
+    muted:        '#93A3A0',
+    muted2:       '#7F8C8D',
   };
-  const accent = sanitizeColor(branding?.accentColor) || '#CFFF50';
+  const accent = sanitizeColor(branding?.accentColor) || '#5CC98E';
   const accentInk = pickAccentInk(accent);
   const businessName = (branding?.businessName || '').trim();
   const logoUrl = sanitizeUrl(branding?.logoUrl);
@@ -412,17 +412,17 @@ export function emailShell({ heading, body, ctaText, ctaUrl, footer, branding, p
 // Pick a contrasting text color for buttons given the workspace's
 // accent color. Bright accents (lime, yellow, light blue) get dark
 // ink; dark accents (the original calm-theme #2E3168 indigo, deep
-// reds, etc.) get off-white. Threshold tuned so #CFFF50 lime → dark
+// reds, etc.) get off-white. Threshold tuned so #5CC98E lime → dark
 // ink and #2E3168 indigo → light ink.
 function pickAccentInk(hex) {
   const m = /^#([0-9a-fA-F]{6})$/.exec(hex || '');
-  if (!m) return '#0B0C08';
+  if (!m) return '#012B24';
   const r = parseInt(m[1].slice(0, 2), 16);
   const g = parseInt(m[1].slice(2, 4), 16);
   const b = parseInt(m[1].slice(4, 6), 16);
   // Standard relative-luminance approximation. >140 means "bright".
   const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  return lum > 140 ? '#0B0C08' : '#F3F3EE';
+  return lum > 140 ? '#012B24' : '#ECF0F1';
 }
 
 function sanitizeColor(c) {

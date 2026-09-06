@@ -8,7 +8,7 @@
 // so a component like ViewToggle can take ctx as a prop and not care which
 // provider supplied it.
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { api } from './api.js';
+import { fetchMe } from './landing.js';
 
 const Ctx = createContext({ ctx: null, loading: true, error: null, refresh: () => {} });
 
@@ -18,14 +18,16 @@ export function UserContextProvider({ children }) {
   const [error, setError] = useState(null);
 
   const refresh = useCallback(async () => {
-    const r = await api.get('/me');
+    const r = await fetchMe({ force: true });
     setCtx(r);
     return r;
   }, []);
 
   useEffect(() => {
     let live = true;
-    api.get('/me')
+    // Shared with RootRouter/RoleRouter: on launch this is the SAME request
+    // they already made, not a third round trip (see lib/landing.js).
+    fetchMe()
       .then((r) => live && setCtx(r))
       .catch((e) => live && setError(e))
       .finally(() => live && setLoading(false));

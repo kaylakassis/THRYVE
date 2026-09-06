@@ -74,7 +74,7 @@ export function renderSecurityAlert({ kind, firstName: fnRaw, device, ip, when, 
     heading = 'Your password was changed';
     intro = `The password for your Ivy account was just changed:`;
     decided = `<p><strong>If you made this change</strong>, no action is needed.</p>
-      <p><strong>If you didn't</strong>, your account may be at risk. Reset your password immediately and contact us at <a href="mailto:${escapeHtml(supportAddr)}" style="color:#CFFF50;text-decoration:underline;">${escapeHtml(supportAddr)}</a>.</p>`;
+      <p><strong>If you didn't</strong>, your account may be at risk. Reset your password immediately and contact us at <a href="mailto:${escapeHtml(supportAddr)}" style="color:#5CC98E;text-decoration:underline;">${escapeHtml(supportAddr)}</a>.</p>`;
   } else if (kind === 'two_factor') {
     subject = enabled ? 'Two-factor authentication is on' : 'Two-factor authentication was turned off';
     preheader = enabled ? 'Your Ivy account just got more secure.' : 'Your account is now protected by your password alone.';
@@ -89,9 +89,9 @@ export function renderSecurityAlert({ kind, firstName: fnRaw, device, ip, when, 
 
   const detail = `
     <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:18px 0 6px;font-size:13.5px;line-height:1.8;">
-      <tr><td style="color:#8A8D85;padding-right:16px;vertical-align:top;">Device</td><td style="color:#F3F3EE;">${escapeHtml(device || 'an unknown device')}</td></tr>
-      <tr><td style="color:#8A8D85;padding-right:16px;vertical-align:top;">Time</td><td style="color:#F3F3EE;">${escapeHtml(when || fmtWhen())}</td></tr>
-      ${ip ? `<tr><td style="color:#8A8D85;padding-right:16px;vertical-align:top;">IP</td><td style="color:#F3F3EE;">${escapeHtml(ip)}</td></tr>` : ''}
+      <tr><td style="color:#93A3A0;padding-right:16px;vertical-align:top;">Device</td><td style="color:#ECF0F1;">${escapeHtml(device || 'an unknown device')}</td></tr>
+      <tr><td style="color:#93A3A0;padding-right:16px;vertical-align:top;">Time</td><td style="color:#ECF0F1;">${escapeHtml(when || fmtWhen())}</td></tr>
+      ${ip ? `<tr><td style="color:#93A3A0;padding-right:16px;vertical-align:top;">IP</td><td style="color:#ECF0F1;">${escapeHtml(ip)}</td></tr>` : ''}
     </table>`;
 
   const html = emailShell({

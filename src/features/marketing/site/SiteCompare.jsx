@@ -7,7 +7,7 @@ const PAGE_CSS = `
 .site-root h1{font-size:clamp(34px,4.4vw,52px);letter-spacing:-.025em;line-height:1.12;margin-bottom:18px}
 .site-root h2{font-size:clamp(26px,3.2vw,36px);letter-spacing:-.02em;margin-bottom:14px}
 .site-root .page-head{padding:160px 0 40px;position:relative;text-align:center}
-.site-root .page-head::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:550px;background:radial-gradient(ellipse,rgba(207,255,80,.09) 0%,transparent 65%);pointer-events:none}
+.site-root .page-head::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:550px;background:radial-gradient(ellipse,rgba(92,201,142,.09) 0%,transparent 65%);pointer-events:none}
 .site-root .lede{font-size:18px;color:var(--muted);max-width:660px;margin:0 auto}
 .site-root section{padding:64px 0}
 /* TABLE */
@@ -16,7 +16,7 @@ const PAGE_CSS = `
 .site-root th,.site-root td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--border)}
 .site-root tr:last-child td{border-bottom:none}
 .site-root th{font-family:var(--head);font-weight:600;font-size:14.5px;background:var(--panel2);white-space:nowrap}
-.site-root th.ivy-col,.site-root td.ivy-col{background:var(--tint);border-left:1px solid rgba(207,255,80,.3);border-right:1px solid rgba(207,255,80,.3)}
+.site-root th.ivy-col,.site-root td.ivy-col{background:var(--tint);border-left:1px solid rgba(92,201,142,.3);border-right:1px solid rgba(92,201,142,.3)}
 .site-root th.ivy-col{color:var(--lime)}
 .site-root td{color:var(--muted)}
 .site-root td:first-child{color:var(--text);font-weight:500}

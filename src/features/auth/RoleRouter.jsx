@@ -1,57 +1,44 @@
-// On the root '/' route, decide whether the user lands in the business app
-// or the client portal. Owner-only → business view. Client-only → /me.
+// On the business routes, decide whether the user belongs in the business
+// app or the client portal. Owner-only → business view. Client-only → /me.
 // Both → business view by default (they can switch via the menu).
 //
-// Wraps the auth-gated children so we don't have to re-fetch /api/me on
-// every page load - the AppShell stays the cache.
+// Uses the shared fetchMe() so this is the same round trip RootRouter and
+// UserContextProvider already made, not a new one. When the device
+// remembers the last confirmed landing, the shell renders immediately and
+// the fresh /me only has to confirm it - so the dashboard's own requests
+// start in parallel with the role check instead of queueing behind it.
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { api } from '../../lib/api.js';
 import { useAuth } from '../../lib/auth.jsx';
+import { isNative } from '../../lib/platform.js';
+import { fetchMe, decideLanding, rememberLanding, rememberedLanding } from '../../lib/landing.js';
+import LaunchFrame from '../../components/LaunchFrame.jsx';
 
 export default function RoleRouter({ children }) {
   const { user, loading: authLoading } = useAuth();
-  const [decision, setDecision] = useState(null); // 'business' | 'client' | null
-  const [error, setError] = useState(null);
+  const [decision, setDecision] = useState(null); // 'onboarding' | 'business' | 'client' | null
+  const [remembered] = useState(rememberedLanding);
 
   useEffect(() => {
     if (!user) return;
     let live = true;
-    api.get('/me')
+    fetchMe()
       .then((r) => {
-        if (!live) return;
-        // Fresh owner who hasn't completed onboarding → wizard.
-        // Exception: the user explicitly clicked "Save & exit" (which
-        // sets ivy_skip_onboarding_until to a future timestamp).
-        // That bypass keeps the dashboard reachable even when
-        // /api/onboarding/complete has failed server-side - we don't
-        // want owners stuck on the welcome screen because of a server
-        // hiccup. The flag self-expires after 24h.
-        let skipUntil = 0;
-        try { skipUntil = Number(localStorage.getItem('ivy_skip_onboarding_until')) || 0; }
-        catch { /* private mode */ }
-        const skipping = skipUntil > Date.now();
-        if (r.isOwner && !r.onboardedAt && !skipping) { setDecision('onboarding'); return; }
-        // Super-admins always land in the business shell so the /admin tab
-        // is reachable, even if they're only a client elsewhere.
-        const isSuperAdmin = !!(user?.isSuperAdmin || r.isSuperAdmin);
-        if (r.isOwner || isSuperAdmin) setDecision('business');
-        else if (r.isClient) setDecision('client');
-        else setDecision('business'); // fall back; the empty business shell is harmless
+        const d = decideLanding(r, user);
+        rememberLanding(d);
+        if (live) setDecision(d);
       })
-      .catch((e) => {
-        if (!live) return;
-        setError(e);
-        setDecision('business');
-      });
+      .catch(() => live && setDecision('business')); // the empty business shell is harmless
     return () => { live = false; };
   }, [user]);
 
   if (authLoading || !user) return children; // RequireAuth handles the rest
-  if (!decision) {
+  const effective = decision || remembered;
+  if (!effective) {
+    if (isNative()) return <LaunchFrame/>;
     return <div style={{ padding: 48, color: 'var(--muted)', fontSize: 13 }}>Loading…</div>;
   }
-  if (decision === 'onboarding') return <Navigate to={{ pathname: '/onboarding', search: window.location.search }} replace/>;
-  if (decision === 'client')     return <Navigate to={{ pathname: '/me', search: window.location.search }} replace/>;
+  if (effective === 'onboarding') return <Navigate to={{ pathname: '/onboarding', search: window.location.search }} replace/>;
+  if (effective === 'client')     return <Navigate to={{ pathname: '/me', search: window.location.search }} replace/>;
   return children;
 }

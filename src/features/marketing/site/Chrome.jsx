@@ -1,7 +1,8 @@
 // Shared chrome for the new marketing site (ported from the ivy-site-handoff
 // prototype). Every marketing page renders <SiteNav active=".."/> + content +
 // <SiteFooter/> + <StickyCta/>, and calls usePageMeta for title/meta/JSON-LD.
-// Design tokens + base styles live in BASE_CSS, injected once per page via a
+// Design tokens (the Ivy green palette: #012B24 / #004225 / #7F8C8D / #ECF0F1 /
+// #151515, with #5CC98E as the accent that reads on deep green) + base styles live in BASE_CSS, injected once per page via a
 // <style> tag so the pages stay pixel-faithful to the prototype.
 import React, { useEffect, useState } from 'react';
 
@@ -64,7 +65,7 @@ export function SiteNav({ active }) {
     <>
       <nav className="site-nav">
         <div className="container nav-inner">
-          <a href="/" className="logo"><span className="logo-mark">✓</span>Ivy</a>
+          <a href="/" className="logo"><img className="logo-mark" src="/icon-512.png" alt=""/>Ivy</a>
           <div className="nav-links">
             {NAV.map(([to, label]) => (
               <a key={to} href={to} className={active === to ? 'active' : undefined}>{label}</a>
@@ -90,7 +91,7 @@ export function SiteFooter() {
     <footer className="site-foot">
       <div className="container foot-inner">
         <div className="foot-brand">
-          <a href="/" className="logo"><span className="logo-mark">✓</span>Ivy</a>
+          <a href="/" className="logo"><img className="logo-mark" src="/icon-512.png" alt=""/>Ivy</a>
           <p>The all-in-one business platform for solopreneurs, with an AI assistant that does your busywork.</p>
         </div>
         <div className="foot-cols">
@@ -127,20 +128,20 @@ export function StickyCta() {
 // Scoped inside .site-root so the app's global.css and these styles can't
 // fight each other.
 export const BASE_CSS = `
-.site-root{--bg:#0D0E0C;--panel:#16181A;--panel2:#1D2022;--border:#262A2D;--border2:#383D41;--text:#F3F3EE;--muted:#C9CAC3;--dim:#8A8D85;--lime:#CFFF50;--ink:#0B0C08;--tint:#1F2912;--head:'Space Grotesk',Inter,sans-serif;font-family:Inter,-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+.site-root{--bg:#012B24;--panel:#04352D;--panel2:#0B4136;--border:#164B3F;--border2:#276353;--text:#ECF0F1;--muted:#C5D1CE;--dim:#93A3A0;--lime:#5CC98E;--ink:#012B24;--tint:#0A3D2F;--head:'Space Grotesk',Inter,sans-serif;font-family:Inter,-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
 .site-root *{margin:0;padding:0;box-sizing:border-box}
 .site-root a{color:inherit;text-decoration:none}
 .site-root .container{max-width:1120px;margin:0 auto;padding:0 24px}
 .site-root .lime{color:var(--lime)}
 .site-root .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 26px;border-radius:8px;transition:.2s;cursor:pointer;border:none;font-family:Inter,sans-serif}
 .site-root .btn-primary{background:var(--lime);color:var(--ink)}
-.site-root .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(207,255,80,.3)}
+.site-root .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(92,201,142,.3)}
 .site-root .btn-ghost{border:1px solid var(--border2);color:var(--text);background:transparent}
 .site-root .btn-ghost:hover{border-color:var(--lime);color:var(--lime)}
-.site-root .site-nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(16px);background:rgba(13,14,12,.92);border-bottom:1px solid var(--border)}
+.site-root .site-nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(16px);background:rgba(1,43,36,.92);border-bottom:1px solid var(--border)}
 .site-root .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
 .site-root .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:19px;font-family:var(--head)}
-.site-root .logo-mark{width:28px;height:28px;border-radius:8px;background:var(--lime);display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:15px;font-weight:700}
+.site-root .logo-mark{width:28px;height:28px;border-radius:8px;display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(236,240,241,.12)}
 .site-root .nav-links{display:flex;gap:30px;font-size:14.5px;color:var(--muted);font-weight:500}
 .site-root .nav-links a:hover{color:var(--text)}
 .site-root .nav-links a.active{color:var(--lime)}
@@ -148,18 +149,18 @@ export const BASE_CSS = `
 .site-root .nav-cta .login{font-size:14.5px;color:var(--muted);font-weight:500;text-decoration:underline;text-underline-offset:3px}
 .site-root .btn-sm{padding:8px 18px;font-size:14px}
 .site-root h1,.site-root h2,.site-root h3,.site-root h4{font-family:var(--head);font-weight:500}
-.site-root .eyebrow{display:inline-block;font-family:Inter,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);background:var(--tint);border:1px solid rgba(207,255,80,.25);padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.site-root .eyebrow{display:inline-block;font-family:Inter,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);background:var(--tint);border:1px solid rgba(92,201,142,.25);padding:6px 14px;border-radius:999px;margin-bottom:20px}
 .site-root .trust{font-size:13.5px;color:var(--dim)}
 .site-root .alt{background:var(--panel);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .site-root .center{text-align:center}
 .site-root .center .section-sub{margin:0 auto}
 .site-root .section-sub{font-size:17px;color:var(--muted);max-width:620px}
 .site-root .menu-btn{display:none;background:none;border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:6px 12px;font-size:18px;cursor:pointer;line-height:1.2}
-.site-root .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(13,14,12,.98);border-bottom:1px solid var(--border);z-index:99;padding:8px 24px 18px}
+.site-root .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(1,43,36,.98);border-bottom:1px solid var(--border);z-index:99;padding:8px 24px 18px}
 .site-root .mobile-menu a{display:block;padding:13px 0;font-size:16px;color:var(--muted);border-bottom:1px solid var(--border)}
 .site-root .mobile-menu a:last-child{border-bottom:none}
 .site-root .mobile-menu.open{display:block}
-.site-root .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:98;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(13,14,12,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:none;transform:translateY(110%);transition:.3s}
+.site-root .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:98;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(1,43,36,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:none;transform:translateY(110%);transition:.3s}
 .site-root .sticky-cta.show{transform:none}
 .site-root .sticky-cta .btn{width:100%;justify-content:center}
 .site-root .sticky-cta .note{text-align:center;font-size:11.5px;color:var(--dim);margin-top:5px}

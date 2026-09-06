@@ -9,7 +9,7 @@ const PAGE_CSS = `
 .site-root h2{font-size:clamp(24px,3vw,32px);letter-spacing:-.02em;margin-bottom:14px}
 .site-root .k-label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:12px}
 .site-root .page-head{padding:160px 0 56px;position:relative;text-align:center}
-.site-root .page-head::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:550px;background:radial-gradient(ellipse,rgba(207,255,80,.09) 0%,transparent 65%);pointer-events:none}
+.site-root .page-head::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:550px;background:radial-gradient(ellipse,rgba(92,201,142,.09) 0%,transparent 65%);pointer-events:none}
 .site-root .lede{font-size:18px;color:var(--muted);max-width:660px;margin:0 auto}
 .site-root section{padding:56px 0}
 .site-root .block{padding:48px 0;border-bottom:1px solid var(--border)}
@@ -19,7 +19,7 @@ const PAGE_CSS = `
 .site-root .block p b{color:var(--text);font-weight:600}
 .site-root .sec-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px;text-align:left}
 .site-root .sec-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:26px}
-.site-root .sec-card .icon{width:40px;height:40px;border-radius:10px;background:var(--tint);border:1px solid rgba(207,255,80,.25);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+.site-root .sec-card .icon{width:40px;height:40px;border-radius:10px;background:var(--tint);border:1px solid rgba(92,201,142,.25);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
 .site-root .sec-card h3{font-size:16px;font-weight:600;margin-bottom:8px}
 .site-root .sec-card p{font-size:14px;color:var(--muted)}
 @media(max-width:900px){.site-root .sec-grid{grid-template-columns:1fr}}

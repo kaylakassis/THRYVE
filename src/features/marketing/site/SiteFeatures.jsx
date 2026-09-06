@@ -10,7 +10,7 @@ const PAGE_CSS = `
 .site-root h2{font-size:clamp(26px,3.2vw,36px);letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
 .site-root .k-label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:12px}
 .site-root .page-head{padding:160px 0 40px;position:relative;text-align:center}
-.site-root .page-head::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:550px;background:radial-gradient(ellipse,rgba(207,255,80,.09) 0%,transparent 65%);pointer-events:none}
+.site-root .page-head::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:550px;background:radial-gradient(ellipse,rgba(92,201,142,.09) 0%,transparent 65%);pointer-events:none}
 .site-root .lede{font-size:18px;color:var(--muted);max-width:620px;margin:0 auto}
 .site-root section{padding:72px 0}
 .site-root .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
@@ -25,12 +25,12 @@ const PAGE_CSS = `
 .site-root .visual .row .l{color:var(--text);font-weight:500}
 .site-root .visual .row .l small{display:block;color:var(--dim);font-weight:400;font-size:12.5px}
 .site-root .tag{font-size:12px;font-weight:600;padding:4px 11px;border-radius:999px;white-space:nowrap}
-.site-root .tag.green{background:var(--tint);color:var(--lime);border:1px solid rgba(207,255,80,.3)}
+.site-root .tag.green{background:var(--tint);color:var(--lime);border:1px solid rgba(92,201,142,.3)}
 .site-root .tag.grey{background:var(--panel);color:var(--muted);border:1px solid var(--border2)}
 .site-root .tag.amber{background:rgba(251,191,36,.08);color:#fcd34d;border:1px solid rgba(251,191,36,.25)}
 .site-root .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px;text-align:left}
 .site-root .mini{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:24px;transition:.2s}
-.site-root .mini:hover{border-color:rgba(207,255,80,.35)}
+.site-root .mini:hover{border-color:rgba(92,201,142,.35)}
 .site-root .mini .icon{font-size:22px;margin-bottom:12px}
 .site-root .mini h4{font-size:15.5px;font-weight:600;margin-bottom:6px}
 .site-root .mini p{font-size:13.5px;color:var(--muted)}
