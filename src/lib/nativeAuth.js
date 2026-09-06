@@ -20,10 +20,14 @@ let memoryToken = null;
 let primed = false;
 let primePromise = null;
 
+// Returns the MODULE, not the Preferences proxy. Returning the proxy from
+// an async function makes the promise machinery look for `.then` on it,
+// and Capacitor's proxy turns that lookup into a plugin call that never
+// resolves - so `await prefs()` would hang forever and the first API
+// request (which waits on primeNativeAuth) would never be sent.
 async function prefs() {
   if (!isNative()) return null;
-  const mod = await import('@capacitor/preferences');
-  return mod.Preferences;
+  return import('@capacitor/preferences');
 }
 
 // Load the token once on app boot so subsequent reads are sync from
@@ -33,9 +37,9 @@ export function primeNativeAuth() {
   if (primePromise) return primePromise;
   primePromise = (async () => {
     try {
-      const p = await prefs();
-      if (!p) { primed = true; return null; }
-      const { value } = await p.get({ key: KEY });
+      const m = await prefs();
+      if (!m) { primed = true; return null; }
+      const { value } = await m.Preferences.get({ key: KEY });
       memoryToken = value || null;
     } catch {
       memoryToken = null;
@@ -53,10 +57,10 @@ export function getNativeAuthToken() {
 
 export async function setNativeAuthToken(token) {
   memoryToken = token || null;
-  const p = await prefs();
-  if (!p) return;
-  if (token) await p.set({ key: KEY, value: token });
-  else      await p.remove({ key: KEY });
+  const m = await prefs();
+  if (!m) return;
+  if (token) await m.Preferences.set({ key: KEY, value: token });
+  else      await m.Preferences.remove({ key: KEY });
 }
 
 export async function clearNativeAuthToken() {

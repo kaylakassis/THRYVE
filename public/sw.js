@@ -17,7 +17,7 @@ const RUNTIME_CACHE = `ivy-runtime-${VERSION}`;
 const OFFLINE_URL = '/offline.html';
 
 // Static files that always exist - precached so the PWA boots offline.
-const SHELL_ASSETS = [OFFLINE_URL, '/manifest.webmanifest', '/icon.svg', '/icon-maskable.svg'];
+const SHELL_ASSETS = [OFFLINE_URL, '/manifest.webmanifest', '/icon-512.png', '/icon-maskable.svg'];
 
 self.addEventListener('install', (event) => {
   // Do NOT skipWaiting here: an update stays "waiting" until the open
@@ -118,8 +118,8 @@ self.addEventListener('push', (event) => {
   const title = payload.title || 'Ivy';
   const options = {
     body: payload.body || '',
-    icon: payload.icon || '/icon.svg',
-    badge: payload.badge || '/icon.svg',
+    icon: payload.icon || '/icon-512.png',
+    badge: payload.badge || '/icon-512.png',
     tag:  payload.tag,
     data: { url: payload.url || '/', ...(payload.data || {}) },
     requireInteraction: !!payload.requireInteraction,
