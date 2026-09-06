@@ -145,7 +145,7 @@ const PAGE_CSS = `
 /* CHAT DEMO */
 .site-root .chat{background:var(--panel);border:1px solid var(--border2);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
 .site-root .chat-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);background:var(--panel2)}
-.site-root .chat-head .avatar{width:28px;height:28px;border-radius:8px;background:var(--lime);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink);font-weight:700}
+.site-root .chat-head .avatar{width:28px;height:28px;border-radius:8px;overflow:hidden;background:#042b25;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink);font-weight:700}
 .site-root .chat-head .name{font-weight:600;font-size:14px;font-family:var(--head)}
 .site-root .chat-head .status{font-size:12px;color:var(--lime);margin-left:auto;display:flex;align-items:center;gap:6px}
 .site-root .chat-head .status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--lime)}
