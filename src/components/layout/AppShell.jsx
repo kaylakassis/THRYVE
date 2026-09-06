@@ -98,7 +98,7 @@ function AppShellInner() {
   // Native app: silently refresh the APNs device token on launch when
   // the user already granted notifications (Apple rotates tokens; the
   // server upserts). No-op on web, never prompts.
-  useEffect(() => { initNativePushOnLaunch(); }, []);
+  useEffect(() => { Promise.resolve().then(() => initNativePushOnLaunch()).catch(() => {}); }, []);
 
   // Mirror the direction class onto <body> so React portals (dropdowns, modals)
   // rendered into document.body inherit the same CSS variables we use everywhere.

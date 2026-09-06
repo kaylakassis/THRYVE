@@ -45,7 +45,7 @@ export default function RootRouter() {
   // app shell. Everything below this block is the web behaviour, untouched.
   const native = isNative();
   if (native && !authLoading && !user) {
-    return <Navigate to="/signin" replace/>;
+    return <Navigate to="/welcome" replace/>;
   }
 
   // Logged-out → always the marketing home. The controlled-launch waitlist

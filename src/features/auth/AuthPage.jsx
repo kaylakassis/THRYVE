@@ -84,7 +84,12 @@ export default function AuthPage({ mode = 'signin' }) {
         nav(nextTarget || '/', { replace: true });
       }
     } catch (ex) {
-      setErr(ex.message || 'Something went wrong');
+      // Wrong credentials come back as a 401. Say so plainly - and say
+      // "email or password", not just "password": confirming that an
+      // email exists would let anyone probe which addresses have accounts.
+      if (ex.status === 401 && mode === 'signin') setErr('Incorrect email or password.');
+      else if (ex.status === 0) setErr(ex.message);
+      else setErr(ex.message || 'Something went wrong');
     } finally {
       setBusy(false);
     }

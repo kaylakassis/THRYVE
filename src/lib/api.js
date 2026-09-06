@@ -21,7 +21,7 @@
 //     src/lib/nativeAuth.js) and `X-Client-Platform: ios` so the server
 //     knows to look at the header instead of the cookie.
 import { isNative, getPlatform } from './platform.js';
-import { getNativeAuthToken } from './nativeAuth.js';
+import { getNativeAuthToken, primeNativeAuth } from './nativeAuth.js';
 
 const RETRY_METHODS = new Set(['GET']);
 
@@ -39,6 +39,9 @@ async function req(method, path, body, opts = {}) {
   // (api/_lib/auth.js) checks Authorization first, falls back to cookie.
   if (isNative()) {
     headers['X-Client-Platform'] = getPlatform();
+    // First request after a cold start: load the token the last sign-in
+    // stored on the device. Memoised, so this is a no-op afterwards.
+    await primeNativeAuth();
     const tok = getNativeAuthToken();
     if (tok) headers['Authorization'] = `Bearer ${tok}`;
   }
@@ -95,8 +98,10 @@ async function req(method, path, body, opts = {}) {
       if (!detail && res.statusText) detail = res.statusText;
       if (!detail) detail = `HTTP ${res.status}`;
 
-      const message = `${res.status}: ${detail}`;
-      throw Object.assign(new Error(message), { status: res.status, details: parsed });
+      // err.message is what screens show people. Never put the HTTP status
+      // in it ("401: Invalid email or password" reads like a crash). The
+      // status stays on err.status for code that needs to branch on it.
+      throw Object.assign(new Error(detail), { status: res.status, details: parsed });
     }
     if (res.status === 204) return null;
     return res.json();

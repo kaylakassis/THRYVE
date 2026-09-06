@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Ivy uses your camera so you can attach photos to client notes and upload service images.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Ivy uses Face ID to unlock the app without typing your password.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Ivy uses your location to autofill your business address when setting up your booking site.</string>
 	<key>NSMicrophoneUsageDescription</key>

@@ -6,6 +6,8 @@
 //
 // Future tabs (billing, team, notifications) will mount alongside.
 import React, { useEffect, useRef, useState } from 'react';
+import { isNative } from '../../lib/platform.js';
+import { biometryInfo, biometricUnlock, isLockEnabled, setLockEnabled } from '../../lib/biometric.js';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Icons } from '../../components/Icons.jsx';
 import { useAuth } from '../../lib/auth.jsx';
@@ -137,6 +139,8 @@ export default function AccountPage() {
           </button>
         </div>
       </div>
+
+      {isNative() && <FaceIdCard/>}
 
       {/* Danger zone */}
       <div className="card" style={{ padding: 22, borderColor: 'var(--danger)' }}>
@@ -1557,3 +1561,41 @@ const fieldStyle = {
   background: 'var(--surface)', border: '1px solid var(--border-strong)',
   color: 'var(--fg)', fontSize: 14, outline: 'none',
 };
+
+
+// Native only: "Unlock with Face ID" (or Touch ID). Rendered only when
+// the device reports biometry is available. Turning it ON asks for one
+// successful scan first so a phone that cannot do it never ends up
+// locked; turning it OFF is immediate.
+function FaceIdCard() {
+  const [info, setInfo] = useState(null);
+  const [on, setOn] = useState(isLockEnabled());
+  const [busy, setBusy] = useState(false);
+  useEffect(() => { let live = true; biometryInfo().then((i) => { if (live) setInfo(i); }); return () => { live = false; }; }, []);
+  if (!info?.available) return null;
+  const toggle = async () => {
+    if (busy) return;
+    if (on) { setLockEnabled(false); setOn(false); return; }
+    setBusy(true);
+    try { await biometricUnlock(`Confirm ${info.label} to turn this on`); setLockEnabled(true); setOn(true); }
+    catch { /* cancelled or failed - leave it off */ }
+    finally { setBusy(false); }
+  };
+  return (
+    <div className="card" style={{ padding: 22 }}>
+      <div className="metric-label" style={{ marginBottom: 8 }}>Security</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontWeight: 600 }}>Unlock with {info.label}</div>
+          <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 3 }}>
+            Ask for {info.label} when Ivy opens, and again after a minute in the background.
+          </div>
+        </div>
+        <button type="button" role="switch" aria-checked={on} onClick={toggle} disabled={busy}
+          className={'btn ' + (on ? 'btn-primary' : 'btn-outline')} style={{ minWidth: 64, justifyContent: 'center' }}>
+          {busy ? '…' : on ? 'On' : 'Off'}
+        </button>
+      </div>
+    </div>
+  );
+}

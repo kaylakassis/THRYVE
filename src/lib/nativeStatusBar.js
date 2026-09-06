@@ -17,6 +17,7 @@ import { isNative } from './platform.js';
 
 let plugin = null;
 let lastDark = null;
+let disabled = false; // first plugin failure switches the feature off for the session
 
 async function load() {
   if (!plugin) plugin = await import('@capacitor/status-bar');
@@ -40,6 +41,7 @@ function luminanceAtTop() {
 }
 
 async function sync() {
+  if (disabled) return;
   const dark = luminanceAtTop() < 0.5;
   if (dark === lastDark) return;
   lastDark = dark;
@@ -47,8 +49,10 @@ async function sync() {
     const { StatusBar, Style } = await load();
     await StatusBar.setStyle({ style: dark ? Style.Dark : Style.Light });
   } catch (e) {
-    lastDark = null;
-    console.warn('[statusBar] unavailable:', e?.message || e);
+    // Missing pod / unsupported host: log once and stop trying, rather than
+    // re-attempting on every DOM change for the rest of the session.
+    disabled = true;
+    console.warn('[statusBar] disabled:', e?.message || e);
   }
 }
 

@@ -11,6 +11,7 @@ import { isNative } from './lib/platform.js';
 import AppShell from './components/layout/AppShell.jsx';
 import ViewToggle from './components/ViewToggle.jsx';
 import PWAPrompts from './components/PWAPrompts.jsx';
+import NativeAppLock from './components/NativeAppLock.jsx';
 import RequireAuth from './features/auth/RequireAuth.jsx';
 import AuthPage from './features/auth/AuthPage.jsx';
 import EarlyAccessGate from './features/auth/EarlyAccessGate.jsx';
@@ -74,6 +75,7 @@ const PrivacyPage   = lazy(() => import('./features/legal/PrivacyPage.jsx'));
 const TermsPage     = lazy(() => import('./features/legal/TermsPage.jsx'));
 const DoNotSellPage = lazy(() => import('./features/legal/DoNotSellPage.jsx'));
 const SiteAbout     = lazy(() => import('./features/marketing/site/SiteAbout.jsx'));
+const WelcomePage   = lazy(() => import('./features/auth/WelcomePage.jsx'));
 const SiteSupport   = lazy(() => import('./features/marketing/site/SiteSupport.jsx'));
 const VerticalPage  = lazy(() => import('./features/marketing/VerticalPage.jsx'));
 const SitePricing     = lazy(() => import('./features/marketing/site/SitePricing.jsx'));
@@ -181,6 +183,10 @@ function RouteCrash({ resetError, error }) {
 function WebOnly({ children }) {
   return isNative() ? <Navigate to="/" replace/> : children;
 }
+// The mirror image: screens that only make sense inside the native shell.
+function NativeOnly({ children }) {
+  return isNative() ? children : <Navigate to="/" replace/>;
+}
 
 export default function App() {
   // Custom-domain mode: when the app is loaded on a business owner's
@@ -215,6 +221,7 @@ export default function App() {
 
         {/* Auth - primary entry pages are eager (first paint); the
             secondary flows (forgot/reset/verify) load lazily. */}
+        <Route path="/welcome"         element={<NativeOnly><WelcomePage /></NativeOnly>} />
         <Route path="/signin"          element={<EarlyAccessGate mode="signin"><AuthPage mode="signin" /></EarlyAccessGate>} />
         <Route path="/signup"          element={<EarlyAccessGate><AuthPage mode="signup" /></EarlyAccessGate>} />
         {/* Directly-linkable waitlist landing (for marketing/social). "/"
@@ -317,6 +324,7 @@ export default function App() {
       </ErrorBoundary>
     </Suspense>
     <ViewToggle/>
+    {isNative() && <NativeAppLock/>}
     {/* "Add Ivy to your home screen" prompts are for Safari visitors. In the
         native app the user is already there, so never mount them. */}
     {!isNative() && <PWAPrompts/>}

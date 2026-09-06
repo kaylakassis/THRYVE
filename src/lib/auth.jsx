@@ -1,6 +1,8 @@
 // Auth context - holds the logged-in user and exposes sign-in / sign-up / sign-out.
 import React, { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react';
 import { api } from './api.js';
+import { isNative } from './platform.js';
+import { setNativeAuthToken, clearNativeAuthToken } from './nativeAuth.js';
 import { CURRENT_TERMS_VERSION, CURRENT_PRIVACY_VERSION } from './legal.js';
 
 const Ctx = createContext(null);
@@ -44,6 +46,9 @@ export function AuthProvider({ children }) {
 
   const signIn = useCallback(async (email, password) => {
     const r = await api.post('/auth/login', { email, password });
+    // Native shell: cookies do not survive the cross-origin hop, so the
+    // server also returns the session token. Keep it on the device.
+    if (isNative() && r?.token) await setNativeAuthToken(r.token);
     if (r.mfaRequired) {
       // Password OK but this account has 2FA on — hold here; the caller shows a
       // code screen and calls mfaChallenge().
@@ -61,6 +66,7 @@ export function AuthProvider({ children }) {
       code,
       ...(mfaTokenRef.current ? { mfaToken: mfaTokenRef.current } : {}),
     });
+    if (isNative() && r?.token) await setNativeAuthToken(r.token);
     mfaTokenRef.current = null;
     setUser(r.user);
     stampSessionHint(true);
@@ -83,6 +89,9 @@ export function AuthProvider({ children }) {
       acceptedTermsVersion: CURRENT_TERMS_VERSION,
       acceptedPrivacyVersion: CURRENT_PRIVACY_VERSION,
     });
+    // Native shell: cookies do not survive the cross-origin hop, so the
+    // server also returns the session token. Keep it on the device.
+    if (isNative() && r?.token) await setNativeAuthToken(r.token);
     // A brand-new account must ALWAYS be eligible for onboarding. The
     // onboarding-skip flag is per-browser, not per-account, so a stale one
     // left by a PREVIOUS account on this device (owner deleted + re-signed
@@ -99,6 +108,8 @@ export function AuthProvider({ children }) {
     // user is never stuck "logged in" with no feedback when offline / on a 5xx.
     try { await api.post('/auth/logout'); }
     finally {
+      // Native: forget the token stored on the device, network or not.
+      if (isNative()) await clearNativeAuthToken().catch(() => {});
       setUser(null); setImpersonating(null); setTerms(null);
       stampSessionHint(false);
       // Don't let a per-browser onboarding-skip flag leak into whoever signs

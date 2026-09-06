@@ -35,8 +35,14 @@ function fromEnvFiles(key) {
     const p = resolve(process.cwd(), f);
     if (!existsSync(p)) continue;
     for (const line of readFileSync(p, 'utf8').split('\n')) {
-      const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/i);
-      if (m && m[1] === key) return m[2].replace(/^["']|["']$/g, '').trim();
+      const m = line.match(/^\s*([A-Z0-9_]+)\s*=(.*)$/i); // keep raw rhs so a stray space is visible
+      if (m && m[1] === key) {
+        const raw = m[2];
+        // A space after '=' is the classic .env typo. dotenv trims it, but
+        // say so out loud - and refuse if the trimmed value is still bad.
+        if (/^\s|\s$/.test(raw)) console.warn(`! ${key} has leading/trailing whitespace in ${f}; using the trimmed value.`);
+        return raw.replace(/^["']|["']$/g, '').trim();
+      }
     }
   }
   return '';
