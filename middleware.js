@@ -2,8 +2,9 @@
 //
 // Sole purpose: enable CORS for the Capacitor (native iOS/Android) shell.
 //
-// The native WebView origin is `https://localhost` (Capacitor's default
-// HTTPS scheme handler) or `capacitor://localhost` on older configs. Our
+// The native WebView origin is `capacitor://localhost` on iOS (WebKit
+// refuses to hand `https` to a custom scheme handler, so iosScheme=https
+// is ignored) and `https://localhost` on Android. Our
 // API lives at the production domain - so every native API call is
 // cross-origin from the browser's POV and needs:
 //
@@ -32,9 +33,9 @@ export const config = {
 };
 
 const NATIVE_ORIGINS = new Set([
-  'https://localhost',   // Capacitor iOS (default since v5; HTTPS scheme)
-  'capacitor://localhost', // older Capacitor iOS configs
-  'http://localhost',    // Capacitor Android (default)
+  'capacitor://localhost', // Capacitor iOS (the only scheme WebKit allows it)
+  'https://localhost',     // Capacitor Android with androidScheme=https (ours)
+  'http://localhost',      // Capacitor Android default
 ]);
 
 const ALLOWED_HEADERS = [

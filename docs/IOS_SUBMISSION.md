@@ -185,11 +185,16 @@ These used to be comments inside the config file; JSON has no comments.
   `src/lib/api.js` prepends `VITE_API_BASE_URL` on native. CORS is
   handled by `middleware.js`; auth is `Authorization: Bearer` via
   `src/lib/nativeAuth.js`.
-- **`server.iosScheme: "https"`:** the WebView origin becomes
-  `https://localhost` rather than `capacitor://localhost`. Some SDKs
-  (Stripe.js, OAuth providers) reject the capacitor scheme as an
-  invalid origin; `https://localhost` is treated as a normal secure
-  origin, and it is the exact origin `middleware.js` allows.
+- **The iOS WebView origin is `capacitor://localhost`.** The config
+  used to set `server.iosScheme: "https"` hoping for `https://localhost`,
+  but Capacitor's `CAPInstanceDescriptor.normalize()` rejects any scheme
+  WebKit handles natively (`WKWebView.handlesURLScheme("https")` is
+  true) and silently falls back to `capacitor`. Verified on a device:
+  the launch log reads `Loading app at capacitor://localhost`. The key
+  was removed so it cannot mislead. `middleware.js` and
+  `requireSameOrigin` accept `capacitor://localhost` (origin host
+  parses to `localhost` either way), so nothing depends on the scheme.
+  `server.androidScheme: "https"` is real and stays.
 - **`ios.contentInset: "never"`:** stops iOS bouncing the whole WebView
   when scrolling past the top, which looks broken on a sticky header.
 - **`ios.backgroundColor`:** the flash between native splash dismiss

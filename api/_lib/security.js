@@ -49,8 +49,9 @@ export function requireSameOrigin(req, res) {
   if (origin === host || referer === host) return true;
 
   // Native iOS/Android Capacitor shell. The WebView origin is
-  // `https://localhost` (iOS) / `https://localhost` or `http://localhost`
-  // (Android) - those can never match our API host, but the request is
+  // `capacitor://localhost` (iOS) / `https://localhost` or `http://localhost`
+  // (Android) - originHost() reduces all of them to `localhost`. Those can
+  // never match our API host, but the request is
   // legitimate. We gate on the X-Client-Platform marker AND on Capacitor's
   // fixed localhost origin together: a malicious page on a real
   // localhost-bound dev server can't spoof the platform header from

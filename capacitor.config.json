@@ -16,7 +16,6 @@
     }
   },
   "server": {
-    "iosScheme": "https",
     "androidScheme": "https"
   }
 }
