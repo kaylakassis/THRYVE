@@ -1,40 +1,38 @@
 /* ============================================================
    Ivy - shared tokens for both directions (Calm + Bold)
+   Palette: #012B24 deep green, #004225 green, #7F8C8D grey, #ECF0F1 off-white, #151515 near-black.
+   Dark-mode accent #4CBA7F is a lightened #004225 so it clears contrast on #151515.
    ============================================================ */
 
 .dir-calm {
-  --page: #F6F5F1;
+  --page: #ECF0F1;
   --surface: #FFFFFF;
-  --surface-2: #FAF8F3;
-  --border: #E8E4DC;
-  --border-strong: #D9D3C6;
-  --fg: #141414;
-  --fg-2: #3F3D38;
-  /* --muted bumped from #85827B to #6E6A62 to clear WCAG AA 4.5:1
-     contrast on both --surface (#FFFFFF) and --surface-2 (#FAF8F3).
-     The previous value was ~4.1:1 - borderline failing for body
-     text. The new value reads as "calm grey" but is reliably
-     readable for visual-impairment users. */
-  --muted: #6E6A62;
-  --muted-2: #A9A59B;
+  --surface-2: #F5F7F8;
+  --border: #DDE3E4;
+  --border-strong: #C9D2D3;
+  --fg: #151515;
+  --fg-2: #2F3D39;
+  /* --muted #5B6968 clears WCAG AA (~5.2:1) on --surface and --surface-2. */
+  --muted: #5B6968;
+  --muted-2: #7F8C8D;
 
-  --accent: #2E3168;
+  --accent: #004225;
   --accent-ink: #FFFFFF;
-  --accent-soft: #ECEDF4;
-  --accent-tint: #E3E4EE;
+  --accent-soft: #E3EDE7;
+  --accent-tint: #D3E3DA;
 
   --ok: #1F6E43;
   --warn: #A46508;
   --danger: #9B2C2C;
 
-  --sidebar-bg: #F2EFE8;
-  --sidebar-fg: #2A2926;
+  --sidebar-bg: #E3E9E8;
+  --sidebar-fg: #012B24;
 
   --radius: 14px;
   --radius-sm: 10px;
   --radius-lg: 20px;
-  --shadow-sm: 0 1px 2px rgba(20, 14, 0, 0.04);
-  --shadow: 0 1px 2px rgba(20, 14, 0, 0.04), 0 8px 24px -12px rgba(20, 14, 0, 0.08);
+  --shadow-sm: 0 1px 2px rgba(1, 43, 36, 0.05);
+  --shadow: 0 1px 2px rgba(1, 43, 36, 0.05), 0 8px 24px -12px rgba(1, 43, 36, 0.12);
 
   --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
   --font-sans: 'Inter', -apple-system, sans-serif;
@@ -42,27 +40,27 @@
 }
 
 .dir-bold {
-  --page: #0D0E0C;
-  --surface: #16181A;
-  --surface-2: #1D2022;
-  --border: #262A2D;
-  --border-strong: #383D41;
-  --fg: #F3F3EE;
-  --fg-2: #C9CAC3;
-  --muted: #8A8D85;
-  --muted-2: #5F625C;
+  --page: #151515;
+  --surface: #1C201F;
+  --surface-2: #232928;
+  --border: #2D3533;
+  --border-strong: #3D4745;
+  --fg: #ECF0F1;
+  --fg-2: #C5CECC;
+  --muted: #98A4A2;
+  --muted-2: #6B7674;
 
-  --accent: #CFFF50;
-  --accent-ink: #0B0C08;
-  --accent-soft: #1F2912;
-  --accent-tint: #2B3718;
+  --accent: #4CBA7F;
+  --accent-ink: #012B24;
+  --accent-soft: #16382A;
+  --accent-tint: #1D4A37;
 
   --ok: #6FE6A0;
   --warn: #F0B450;
   --danger: #FF6B6B;
 
-  --sidebar-bg: #0A0B09;
-  --sidebar-fg: #F3F3EE;
+  --sidebar-bg: #012B24;
+  --sidebar-fg: #ECF0F1;
 
   --radius: 12px;
   --radius-sm: 8px;

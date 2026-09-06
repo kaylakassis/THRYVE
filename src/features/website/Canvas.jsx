@@ -4,6 +4,10 @@
 // and a drag grip, so the canvas is a first-class editing surface - not just a
 // preview you have to leave to rearrange.
 import React, { useMemo, useRef, useEffect, useState } from 'react';
+import { ensureBuilderFonts } from '../../lib/builderFonts.js';
+// These modules only load when a customer site is rendered or edited, so
+// requesting the builder font palette here keeps it off every other page.
+ensureBuilderFonts();
 import SectionRenderer from './SectionRenderer.jsx';
 import { TEMPLATES } from './templates.js';
 import { FONT_PAIRS } from './sections.js';

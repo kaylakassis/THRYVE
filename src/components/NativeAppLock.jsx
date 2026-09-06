@@ -76,7 +76,7 @@ export default function NativeAppLock() {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%', maxWidth: 360, marginTop: 36 }}>
         <button type="button" onClick={attempt} disabled={busy} style={{
-          background: '#CFFF50', color: '#0B0C08', border: 0, borderRadius: 14, padding: 16,
+          background: '#ECF0F1', color: '#012B24', border: 0, borderRadius: 14, padding: 16,
           font: 'inherit', fontSize: 17, fontWeight: 700, opacity: busy ? 0.7 : 1,
         }}>{busy ? 'Checking…' : `Unlock with ${label}`}</button>
         <button type="button" onClick={usePassword} disabled={busy} style={{

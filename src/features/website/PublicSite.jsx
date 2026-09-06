@@ -2,6 +2,10 @@
 // /site/:handle/:slug (sub-pages) - reads from
 // /api/website/public/:handle?slug=<slug>.
 import React, { useEffect, useState } from 'react';
+import { ensureBuilderFonts } from '../../lib/builderFonts.js';
+// These modules only load when a customer site is rendered or edited, so
+// requesting the builder font palette here keeps it off every other page.
+ensureBuilderFonts();
 import { Link, useParams, useLocation } from 'react-router-dom';
 import SectionRenderer from './SectionRenderer.jsx';
 import { TEMPLATES } from './templates.js';

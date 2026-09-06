@@ -10,6 +10,10 @@
 // The wrapper here applies the style overrides as a thin shell around
 // whatever the per-section renderer outputs - keeps the renderers focused.
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { ensureBuilderFonts } from '../../lib/builderFonts.js';
+// These modules only load when a customer site is rendered or edited, so
+// requesting the builder font palette here keeps it off every other page.
+ensureBuilderFonts();
 import { Icons } from '../../components/Icons.jsx';
 import { PADDING_DENSITIES } from './sections.js';
 

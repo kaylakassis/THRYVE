@@ -34,7 +34,7 @@ export default function QRCodeModal({ url, label, sublabel, onClose }) {
           type: 'svg',
           margin: 1,
           width: 320,
-          color: { dark: '#0D0E0C', light: '#FFFFFF' },
+          color: { dark: '#151515', light: '#FFFFFF' },
           errorCorrectionLevel: 'M',
         });
         if (!live) return;
@@ -80,7 +80,7 @@ export default function QRCodeModal({ url, label, sublabel, onClose }) {
         await QRCode.toCanvas(canvas, url, {
           width: 1024,
           margin: 2,
-          color: { dark: '#0D0E0C', light: '#FFFFFF' },
+          color: { dark: '#151515', light: '#FFFFFF' },
           errorCorrectionLevel: 'M',
         });
         data = canvas.toDataURL('image/png');

@@ -17,7 +17,7 @@ const CSS = `
   padding: calc(env(safe-area-inset-top, 0px) + 24px) 28px calc(env(safe-area-inset-bottom, 0px) + 28px);
   font-family: var(--font-sans, Inter, -apple-system, sans-serif); -webkit-tap-highlight-color: transparent; }
 .ivy-w .glow { position: absolute; left: 50%; top: 40%; width: 640px; height: 640px; border-radius: 50%; pointer-events: none; will-change: transform;
-  background: radial-gradient(circle, rgba(207,255,80,.18) 0%, rgba(207,255,80,.06) 32%, transparent 62%);
+  background: radial-gradient(circle, rgba(236,240,241,.14) 0%, rgba(236,240,241,.05) 32%, transparent 62%);
   animation: ivy-w-glow 9s ease-in-out infinite; }
 .ivy-w .mark { position: relative; width: 132px; height: 132px; border-radius: 30px; overflow: hidden; background: #042b25;
   box-shadow: 0 24px 60px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08); animation: ivy-w-pop .7s cubic-bezier(.2,.8,.2,1) both; }
@@ -28,7 +28,7 @@ const CSS = `
   animation: ivy-w-rise .6s ease-out 1.05s both; }
 .ivy-w .actions { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 360px; margin-top: 44px;
   animation: ivy-w-rise .6s ease-out 1.2s both; }
-.ivy-w .primary { background: #CFFF50; color: #0B0C08; border: 0; border-radius: 14px; padding: 16px; font: inherit; font-size: 17px; font-weight: 700; }
+.ivy-w .primary { background: #ECF0F1; color: #012B24; border: 0; border-radius: 14px; padding: 16px; font: inherit; font-size: 17px; font-weight: 700; }
 .ivy-w .secondary { background: transparent; color: #F3F3EE; border: 1.5px solid rgba(255,255,255,.28); border-radius: 14px; padding: 15px; font: inherit; font-size: 16px; font-weight: 600; }
 .ivy-w .legal { position: absolute; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); font-size: 12px; color: #8A8D85;
   display: flex; gap: 16px; animation: ivy-w-rise .6s ease-out 1.35s both; }

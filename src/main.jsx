@@ -64,7 +64,7 @@ function FatalFallback({ resetError, error }) {
           <button onClick={resetError}
             style={{
               padding: '10px 18px', borderRadius: 10, border: 0, cursor: 'pointer',
-              background: 'var(--accent, #2E3168)', color: 'var(--accent-ink, #FFFFFF)',
+              background: 'var(--accent, #004225)', color: 'var(--accent-ink, #FFFFFF)',
               fontWeight: 550, fontSize: 14,
             }}>
             Try again
