@@ -203,6 +203,40 @@ These used to be comments inside the config file; JSON has no comments.
   notifications even while foregrounded - an owner mid-invoice still
   wants to see "New booking" arrive.
 
+## What behaves differently inside the native app
+
+Everything below is gated on `isNative()` (Capacitor's own
+`isNativePlatform()`), so the website is unaffected. Found on the first
+real-device run; each one made the app look "like a website".
+
+- **No marketing site.** `RootRouter` sends a logged-out native user to
+  `/signin` and never paints the marketing hero while auth resolves.
+  The eleven marketing-only routes are wrapped in `WebOnly` (App.jsx)
+  and bounce to `/` on native. Legal pages stay reachable.
+- **No "Add to Home Screen" prompts.** `PWAPrompts` is not mounted on
+  native, and `registerServiceWorker()` returns early (WKWebView on a
+  custom scheme rejects it anyway, and the bundle is local).
+- **Legal links open in place.** `LegalLink` drops `target=_blank` on
+  native - there are no tabs, and `_blank` on the app's own scheme
+  dead-ends. `LegalPage` has its own Back link.
+- **Status bar text follows the page.** `src/lib/nativeStatusBar.js`
+  measures the luminance of whatever is painted at the top of the
+  viewport and asks `@capacitor/status-bar` for light or dark text, so
+  the clock is readable over both the dark sign-in and the light app.
+  Lazy-imported: not in the web bundle.
+- **Network failures are worded for people.** `api.js` no longer
+  surfaces WebKit's raw "Load failed"; it says the app could not reach
+  Ivy and to check the connection, and keeps the raw text on
+  `err.cause`.
+- **Portrait only**, branded splash, and `ios.backgroundColor` matching
+  `--page` - see the Xcode configuration section.
+
+Known v1 limitation, not yet addressed: flows that leave the app for
+Safari (Stripe Connect onboarding, Google Calendar OAuth, the Stripe
+billing portal on web accounts) return to joinivy.ai in Safari, not to
+the app. The app picks up the resulting state on its next API call, but
+the user has to switch back by hand. Universal links would fix this.
+
 ## Push notifications (APNs)
 
 Native pushes ride the SAME pipeline as web push - every existing

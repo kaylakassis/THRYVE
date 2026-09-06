@@ -9,6 +9,7 @@
 // language as the signup checkbox is reused so this isn't a softer
 // re-prompt than the original consent.
 import React, { useState } from 'react';
+import LegalLink from './LegalLink.jsx';
 import { Link } from 'react-router-dom';
 import { Icons } from './Icons.jsx';
 import { useAuth } from '../lib/auth.jsx';
@@ -78,14 +79,14 @@ export default function TermsAcceptModal() {
         {/* Two prominent links so the user can read the full text in
             another tab before checking the box. */}
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-          <Link to="/terms" target="_blank" rel="noopener" className="btn btn-outline"
+          <LegalLink to="/terms" className="btn btn-outline"
             style={{ padding: '7px 14px', fontSize: 12.5 }}>
             Read Terms <Icons.Arrow size={11} sw={2}/>
-          </Link>
-          <Link to="/privacy" target="_blank" rel="noopener" className="btn btn-outline"
+          </LegalLink>
+          <LegalLink to="/privacy" className="btn btn-outline"
             style={{ padding: '7px 14px', fontSize: 12.5 }}>
             Read Privacy Policy <Icons.Arrow size={11} sw={2}/>
-          </Link>
+          </LegalLink>
         </div>
 
         <label style={{
@@ -99,8 +100,8 @@ export default function TermsAcceptModal() {
             style={{ marginTop: 3, flexShrink: 0 }}/>
           <span>
             I have read and agree to the{' '}
-            <Link to="/terms" target="_blank" rel="noopener" style={{ color: 'var(--accent)', fontWeight: 600 }}>Terms of Service</Link>{' '}and{' '}
-            <Link to="/privacy" target="_blank" rel="noopener" style={{ color: 'var(--accent)', fontWeight: 600 }}>Privacy Policy</Link>,
+            <LegalLink to="/terms" style={{ color: 'var(--accent)', fontWeight: 600 }}>Terms of Service</LegalLink>{' '}and{' '}
+            <LegalLink to="/privacy" style={{ color: 'var(--accent)', fontWeight: 600 }}>Privacy Policy</LegalLink>,
             and I understand that Ivy - including the Ivy AI assistant
             and every integrated third-party service - provides
             informational tools only, not financial, legal, tax, or

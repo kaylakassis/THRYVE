@@ -65,9 +65,14 @@ async function req(method, path, body, opts = {}) {
       });
     } catch (networkErr) {
       const aborted = networkErr.name === 'AbortError';
+      // networkErr.message is browser jargon ("Load failed" on WebKit,
+      // "Failed to fetch" on Chromium). Say what a person can act on and
+      // keep the raw text on the error for diagnostics.
       throw Object.assign(
-        new Error(aborted ? 'Request timed out - please try again.' : (networkErr.message || 'Network error')),
-        { status: 0 },
+        new Error(aborted
+          ? 'Request timed out - please try again.'
+          : 'Could not reach Ivy. Check your connection and try again.'),
+        { status: 0, cause: networkErr.message || 'network error' },
       );
     } finally {
       if (timer) clearTimeout(timer);

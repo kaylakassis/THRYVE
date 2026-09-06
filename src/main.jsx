@@ -5,6 +5,7 @@ import { AuthProvider } from './lib/auth.jsx';
 import { initMonitoring, ErrorBoundary } from './lib/monitoring.js';
 import { tryStaleChunkRecovery } from './lib/staleChunk.js';
 import { registerServiceWorker } from './lib/pwa.js';
+import { initNativeStatusBar } from './lib/nativeStatusBar.js';
 import App from './App.jsx';
 import './styles/tokens.css';
 import './styles/global.css';
@@ -96,3 +97,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 // Offline app shell + install/update prompts (no-op in dev).
 registerServiceWorker();
+initNativeStatusBar();

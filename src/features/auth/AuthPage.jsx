@@ -1,5 +1,6 @@
 // Shared Sign In / Sign Up screen. `mode` prop toggles between them.
 import React, { useState } from 'react';
+import LegalLink from '../../components/LegalLink.jsx';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Icons } from '../../components/Icons.jsx';
 import { useAuth } from '../../lib/auth.jsx';
@@ -215,8 +216,8 @@ export default function AuthPage({ mode = 'signin' }) {
               style={{ marginTop: 3, flexShrink: 0, width: 18, height: 18 }}/>
             <span>
               I agree to the{' '}
-              <Link to="/terms"   target="_blank" rel="noopener" style={{ color: 'var(--accent)', fontWeight: 600 }}>Terms of Service</Link>{' '}and{' '}
-              <Link to="/privacy" target="_blank" rel="noopener" style={{ color: 'var(--accent)', fontWeight: 600 }}>Privacy Policy</Link>,
+              <LegalLink to="/terms" style={{ color: 'var(--accent)', fontWeight: 600 }}>Terms of Service</LegalLink>{' '}and{' '}
+              <LegalLink to="/privacy" style={{ color: 'var(--accent)', fontWeight: 600 }}>Privacy Policy</LegalLink>,
               and I understand Ivy provides informational tools - not
               financial, legal, or tax advice.
             </span>
