@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { api } from '../../lib/api.js';
 import { useAuth } from '../../lib/auth.jsx';
+import { isNative } from '../../lib/platform.js';
 import MarketingHome from './site/SiteHome.jsx';
 
 export default function RootRouter() {
@@ -38,6 +39,15 @@ export default function RootRouter() {
     return () => { live = false; };
   }, [user]);
 
+  // Native app (Capacitor): there is no "website" to land on. A logged-out
+  // user goes straight to sign-in, and while auth is still resolving we hold
+  // the neutral frame rather than flashing the marketing hero inside the
+  // app shell. Everything below this block is the web behaviour, untouched.
+  const native = isNative();
+  if (native && !authLoading && !user) {
+    return <Navigate to="/signin" replace/>;
+  }
+
   // Logged-out → always the marketing home. The controlled-launch waitlist
   // does NOT take over "/"; it only gates the auth entry points (/signin,
   // /signup via EarlyAccessGate), so a visitor sees the normal marketing
@@ -54,7 +64,7 @@ export default function RootRouter() {
   // signed in after all, the redirect below kicks in a moment later.
   let hasSessionHint = false;
   try { hasSessionHint = localStorage.getItem('ivy_signed_in') === '1'; } catch { /* private mode */ }
-  if (authLoading && !user && !hasSessionHint) {
+  if (!native && authLoading && !user && !hasSessionHint) {
     return <MarketingHome/>;
   }
 

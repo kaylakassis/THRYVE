@@ -3,6 +3,8 @@
 // beforeinstallprompt listener can be wired at first script eval (the
 // event fires early). The React banner in components/PWAPrompts.jsx
 // listens for the custom events dispatched here.
+import { isNative } from './platform.js';
+
 const SW_PATH = '/sw.js';
 
 let deferredInstallPrompt = null;
@@ -45,6 +47,9 @@ export async function promptInstall() {
 
 export function registerServiceWorker() {
   if (typeof window === 'undefined' || !('serviceWorker' in navigator)) return;
+  // Native shell: WKWebView on a custom scheme rejects SW registration, and
+  // the bundle is already local - nothing to cache. Skip it entirely.
+  if (isNative()) return;
   // Skip in dev so the cache doesn't fight Vite HMR.
   if (import.meta.env && import.meta.env.DEV) return;
 

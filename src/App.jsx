@@ -6,7 +6,8 @@
 // Everything else loads on demand inside <Suspense>; the fallback is a
 // minimal centered spinner so navigation never feels stuck.
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { isNative } from './lib/platform.js';
 import AppShell from './components/layout/AppShell.jsx';
 import ViewToggle from './components/ViewToggle.jsx';
 import PWAPrompts from './components/PWAPrompts.jsx';
@@ -173,6 +174,14 @@ function RouteCrash({ resetError, error }) {
   );
 }
 
+// Marketing pages exist for the website only. Inside the native app they
+// would render the dark site chrome (nav, footer, "Get started") around a
+// user who is already in the app, so on Capacitor they bounce to "/", which
+// RootRouter then resolves to sign-in or the app. The web is unaffected.
+function WebOnly({ children }) {
+  return isNative() ? <Navigate to="/" replace/> : children;
+}
+
 export default function App() {
   // Custom-domain mode: when the app is loaded on a business owner's
   // connected custom domain (not a platform host), the ONLY thing that
@@ -239,17 +248,17 @@ export default function App() {
         <Route path="/do-not-sell" element={<DoNotSellPage />} />
 
         {/* Marketing - extra public surfaces beyond the home page. */}
-        <Route path="/about"       element={<SiteAbout />} />
-        <Route path="/support"     element={<SiteSupport />} />
-        <Route path="/tour"        element={<SiteTour />} />
-        <Route path="/features"    element={<SiteFeatures />} />
-        <Route path="/compare"     element={<SiteCompare />} />
-        <Route path="/for/:slug"   element={<VerticalPage />} />
-        <Route path="/pricing"     element={<SitePricing />} />
-        <Route path="/vs/:slug"    element={<ComparePage />} />
-        <Route path="/security"    element={<SecurityPage />} />
-        <Route path="/mobile"      element={<MobilePage />} />
-        <Route path="/integrations" element={<IntegrationsPage />} />
+        <Route path="/about"       element={<WebOnly><SiteAbout /></WebOnly>} />
+        <Route path="/support"     element={<WebOnly><SiteSupport /></WebOnly>} />
+        <Route path="/tour"        element={<WebOnly><SiteTour /></WebOnly>} />
+        <Route path="/features"    element={<WebOnly><SiteFeatures /></WebOnly>} />
+        <Route path="/compare"     element={<WebOnly><SiteCompare /></WebOnly>} />
+        <Route path="/for/:slug"   element={<WebOnly><VerticalPage /></WebOnly>} />
+        <Route path="/pricing"     element={<WebOnly><SitePricing /></WebOnly>} />
+        <Route path="/vs/:slug"    element={<WebOnly><ComparePage /></WebOnly>} />
+        <Route path="/security"    element={<WebOnly><SecurityPage /></WebOnly>} />
+        <Route path="/mobile"      element={<WebOnly><MobilePage /></WebOnly>} />
+        <Route path="/integrations" element={<WebOnly><IntegrationsPage /></WebOnly>} />
 
         {/* First-run wizard for new owners. Auth-gated but no AppShell so it
             can't get caught in RoleRouter's "redirect un-onboarded users to
@@ -308,7 +317,9 @@ export default function App() {
       </ErrorBoundary>
     </Suspense>
     <ViewToggle/>
-    <PWAPrompts/>
+    {/* "Add Ivy to your home screen" prompts are for Safari visitors. In the
+        native app the user is already there, so never mount them. */}
+    {!isNative() && <PWAPrompts/>}
     </>
   );
 }
